@@ -26,32 +26,10 @@
             --heading-color: var(--primary-dark-blue); /* Color de títulos en tema claro */
 
             /* Imágenes de fondo para la sección de cursos */
-            --courses-bg-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            --courses-bg-overlay: rgba(255, 255, 255, 0.85); /* Overlay blanco para legibilidad en modo claro */
-        }
-
-        [data-theme="dark"] {
-            /* Colores para el modo oscuro, manteniendo la vibración */
-            --background-light: #121212; /* Fondo general más oscuro */
-            --text-light: #e0e0e0;
-            --card-background-light: #2a2a2a; /* Fondo de tarjetas más claro en modo oscuro */
-            --border-light: #333;
-            --primary-dark-blue: #0f0f0f; /* Color base oscuro */
-
-            /* Colores vibrantes y gradientes en oscuro */
-            --gradient-start-platzi: #0f0f0f;
-            --gradient-end-platzi: #388E3C; /* Verde oscuro */
-            --accent-green-platzi: #66BB6A; /* Verde más claro para CTA en oscuro */
-            --accent-blue-platzi: #64B5F6; /* Azul más claro */
-            --hover-platzi: #5cb85c; /* Verde al hover */
-
-            --footer-text-light: #777;
-
-            --heading-color: #e0e0e0; /* En modo oscuro, los títulos se aclaran */
-
-            /* Imágenes de fondo para la sección de cursos en modo oscuro */
-            --courses-bg-image: url('https://images.unsplash.com/photo-1547926107-b35581335b71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            --courses-bg-overlay: rgba(0, 0, 0, 0.7); /* Overlay oscuro para legibilidad en modo oscuro */
+            --courses-bg-image-light: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            --courses-bg-image-dark: url('https://images.unsplash.com/photo-1547926107-b35581335b71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            --courses-bg-overlay-light: rgba(255, 255, 255, 0.85); /* Overlay blanco para legibilidad en modo claro */
+            --courses-bg-overlay-dark: rgba(0, 0, 0, 0.7); /* Overlay oscuro para legibilidad en modo oscuro */
         }
 
         body {
@@ -166,9 +144,15 @@
         .courses-section {
             padding: 80px 0;
             text-align: center;
-            position: relative; /* Necesario para el pseudo-elemento ::before */
-            overflow: hidden; /* Para que la imagen no se desborde */
-            color: var(--text-light); /* Asegura que el texto dentro de la sección use el color del tema */
+            position: relative;
+            overflow: hidden;
+            color: var(--text-light);
+            /* Usamos background-image directamente para poder transicionar */
+            background-image: var(--courses-bg-image-light); /* Imagen por defecto para modo claro */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Efecto parallax */
+            transition: background-image 0.8s ease; /* Transición suave para la imagen de fondo */
         }
 
         .courses-section::before {
@@ -178,36 +162,29 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: var(--courses-bg-image);
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Efecto parallax */
-            opacity: 0.5; /* Opacidad base para la imagen */
-            z-index: -2; /* Detrás del contenido pero sobre el fondo */
-            transition: background-image 0.4s ease, opacity 0.4s ease; /* Transición suave de la imagen */
+            /* El overlay se encarga de la opacidad y el color */
+            background-color: var(--courses-bg-overlay-light); /* Overlay por defecto para modo claro */
+            z-index: -1; /* Encima de la imagen pero detrás del contenido */
+            transition: background-color 0.8s ease; /* Transición suave para el overlay */
         }
 
-        .courses-section::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--courses-bg-overlay); /* Overlay que cambia de color y opacidad */
-            z-index: -1; /* Encima de la imagen pero detrás del contenido */
-            transition: background-color 0.4s ease; /* Transición suave del overlay */
+        [data-theme="dark"] .courses-section {
+            background-image: var(--courses-bg-image-dark); /* Cambia la imagen para modo oscuro */
+        }
+
+        [data-theme="dark"] .courses-section::before {
+            background-color: var(--courses-bg-overlay-dark); /* Cambia el overlay para modo oscuro */
         }
 
         .courses-section .container {
-            position: relative; /* Asegura que el contenido esté por encima del pseudo-elemento */
+            position: relative;
             z-index: 1;
         }
 
         .courses-section h2 {
             font-size: 2.5rem;
             margin-bottom: 50px;
-            color: var(--heading-color); /* Usar la nueva variable para títulos */
+            color: var(--heading-color);
             font-weight: 700;
         }
 
@@ -218,7 +195,7 @@
         }
 
         .course-card {
-            background-color: var(--card-background-light); /* Ahora cambia en dark mode */
+            background-color: var(--card-background-light);
             border-radius: 10px;
             padding: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
@@ -243,7 +220,7 @@
         .course-card h3 {
             font-size: 1.6rem;
             margin-bottom: 10px;
-            color: var(--heading-color); /* Título de tarjeta también cambia */
+            color: var(--heading-color);
             font-weight: 600;
         }
 
@@ -270,8 +247,8 @@
         /* About Me Section (Resumida para Landing) */
         .about-me-section {
             padding: 80px 0;
-            background-color: var(--card-background-light); /* Cambia en dark mode */
-            text-align: center; /* Para centrar el div .about-me-content */
+            background-color: var(--card-background-light);
+            text-align: center;
             border-top: 1px solid var(--border-light);
             border-bottom: 1px solid var(--border-light);
         }
@@ -279,16 +256,16 @@
         .about-me-section h2 {
             font-size: 2.5rem;
             margin-bottom: 40px;
-            color: var(--heading-color); /* Usar la nueva variable para títulos */
+            color: var(--heading-color);
             font-weight: 700;
         }
 
         .about-me-content {
             max-width: 800px;
-            margin: 0 auto; /* Centra el bloque de contenido horizontalmente */
+            margin: 0 auto;
             line-height: 1.8;
             font-size: 1.1rem;
-            text-align: left; /* Alineado a la izquierda para mejor lectura de los párrafos */
+            text-align: left;
         }
 
         .about-me-content p {
@@ -300,13 +277,13 @@
         .contact-section {
             padding: 80px 0;
             text-align: center;
-            background-color: var(--background-light); /* Utiliza la variable que cambia para modo oscuro/claro */
+            background-color: var(--background-light);
         }
 
         .contact-section h2 {
             font-size: 2.5rem;
             margin-bottom: 40px;
-            color: var(--heading-color); /* Usar la nueva variable para títulos */
+            color: var(--heading-color);
             font-weight: 700;
         }
 
@@ -333,15 +310,15 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             body {
-                padding-top: 50px; /* Ajuste para header fijo en móviles */
+                padding-top: 50px;
             }
 
             header {
-                padding: 0.8rem 0; /* Header más angosto en móvil */
+                padding: 0.8rem 0;
             }
 
             .hero {
-                padding: 80px 20px; /* Reducir padding en hero para móviles */
+                padding: 80px 20px;
                 min-height: 400px;
             }
 
@@ -501,6 +478,18 @@
         // JavaScript para el cambio de tema
         const themeToggle = document.querySelector('.theme-toggle');
         const body = document.body;
+
+        // Precargar imágenes de fondo para la sección de cursos
+        const preloadImage = (url) => {
+            new Image().src = url;
+        };
+
+        const imageUrlLight = 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+        const imageUrlDark = 'https://images.unsplash.com/photo-1547926107-b35581335b71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+
+        preloadImage(imageUrlLight);
+        preloadImage(imageUrlDark);
+
 
         // Función para aplicar el tema
         function applyTheme(theme) {
