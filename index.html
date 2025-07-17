@@ -8,7 +8,7 @@
     <style>
         :root {
             /* Colores inspirados en Platzi para el modo claro */
-            --background-light: #f0f2f5; /* Fondo más suave */
+            --background-light: #f0f2f5; /* Fondo general más suave */
             --text-light: #2c3e50; /* Texto oscuro */
             --card-background-light: #ffffff;
             --border-light: #e0e6ed;
@@ -24,11 +24,15 @@
             --footer-text-light: #a0a0a0; /* Gris claro para footer */
 
             --heading-color: var(--primary-dark-blue); /* Color de títulos en tema claro */
+
+            /* Imágenes de fondo para la sección de cursos */
+            --courses-bg-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            --courses-bg-overlay: rgba(255, 255, 255, 0.85); /* Overlay blanco para legibilidad en modo claro */
         }
 
         [data-theme="dark"] {
             /* Colores para el modo oscuro, manteniendo la vibración */
-            --background-light: #1c1c1c; /* Fondo de la sección de cursos más claro que el fondo general */
+            --background-light: #121212; /* Fondo general más oscuro */
             --text-light: #e0e0e0;
             --card-background-light: #2a2a2a; /* Fondo de tarjetas más claro en modo oscuro */
             --border-light: #333;
@@ -44,6 +48,10 @@
             --footer-text-light: #777;
 
             --heading-color: #e0e0e0; /* En modo oscuro, los títulos se aclaran */
+
+            /* Imágenes de fondo para la sección de cursos en modo oscuro */
+            --courses-bg-image: url('https://images.unsplash.com/photo-1547926107-b35581335b71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            --courses-bg-overlay: rgba(0, 0, 0, 0.7); /* Overlay oscuro para legibilidad en modo oscuro */
         }
 
         body {
@@ -51,7 +59,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-color: var(--background-light); /* Fondo general del body */
+            background-color: var(--background-light);
             color: var(--text-light);
             transition: background-color 0.4s ease, color 0.4s ease; /* Transición más suave */
             padding-top: 60px; /* Espacio para el header fijo. Ajustado en @media para móviles. */
@@ -158,7 +166,42 @@
         .courses-section {
             padding: 80px 0;
             text-align: center;
-            background-color: var(--background-light); /* Utiliza la variable que cambia para modo oscuro/claro */
+            position: relative; /* Necesario para el pseudo-elemento ::before */
+            overflow: hidden; /* Para que la imagen no se desborde */
+            color: var(--text-light); /* Asegura que el texto dentro de la sección use el color del tema */
+        }
+
+        .courses-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: var(--courses-bg-image);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Efecto parallax */
+            opacity: 0.5; /* Opacidad base para la imagen */
+            z-index: -2; /* Detrás del contenido pero sobre el fondo */
+            transition: background-image 0.4s ease, opacity 0.4s ease; /* Transición suave de la imagen */
+        }
+
+        .courses-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--courses-bg-overlay); /* Overlay que cambia de color y opacidad */
+            z-index: -1; /* Encima de la imagen pero detrás del contenido */
+            transition: background-color 0.4s ease; /* Transición suave del overlay */
+        }
+
+        .courses-section .container {
+            position: relative; /* Asegura que el contenido esté por encima del pseudo-elemento */
+            z-index: 1;
         }
 
         .courses-section h2 {
