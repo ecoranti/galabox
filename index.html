@@ -84,7 +84,9 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(10, 34, 77, 0.8), rgba(10, 34, 77, 0.8)), url('https://source.unsplash.com/random/1600x900/?technology,network') no-repeat center center/cover; /* Imagen de fondo dinámica */
+            background: linear-gradient(rgba(10, 34, 77, 0.85), rgba(10, 34, 77, 0.85)),
+                        url('https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=1600&q=80') 
+                        no-repeat center center/cover;
             color: #fff;
             text-align: center;
             padding: 100px 20px;
@@ -100,6 +102,10 @@
             margin-bottom: 20px;
             font-weight: 700;
             line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s forwards ease 0.3s;
         }
 
         .hero p {
@@ -107,19 +113,28 @@
             margin-bottom: 40px;
             max-width: 800px;
             line-height: 1.5;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s forwards ease 0.5s;
         }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--accent-blue);
-            color: #fff;
-            padding: 15px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        .hero .btn {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s forwards ease 0.7s;
+        }
+
+        .highlight {
+            color: var(--accent-blue-light);
+        }
+
+        /* Animación */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .btn:hover {
