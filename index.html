@@ -28,7 +28,7 @@
 
         [data-theme="dark"] {
             /* Colores para el modo oscuro, manteniendo la vibración */
-            --background-light: #121212;
+            --background-light: #1c1c1c; /* Fondo de la sección de cursos más claro que el fondo general */
             --text-light: #e0e0e0;
             --card-background-light: #2a2a2a; /* Fondo de tarjetas más claro en modo oscuro */
             --border-light: #333;
@@ -51,7 +51,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background-color: var(--background-light);
+            background-color: var(--background-light); /* Fondo general del body */
             color: var(--text-light);
             transition: background-color 0.4s ease, color 0.4s ease; /* Transición más suave */
             padding-top: 60px; /* Espacio para el header fijo. Ajustado en @media para móviles. */
@@ -158,7 +158,7 @@
         .courses-section {
             padding: 80px 0;
             text-align: center;
-            background-color: var(--background-light);
+            background-color: var(--background-light); /* Utiliza la variable que cambia para modo oscuro/claro */
         }
 
         .courses-section h2 {
@@ -228,7 +228,7 @@
         .about-me-section {
             padding: 80px 0;
             background-color: var(--card-background-light); /* Cambia en dark mode */
-            text-align: center;
+            text-align: center; /* Para centrar el div .about-me-content */
             border-top: 1px solid var(--border-light);
             border-bottom: 1px solid var(--border-light);
         }
@@ -242,10 +242,10 @@
 
         .about-me-content {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto; /* Centra el bloque de contenido horizontalmente */
             line-height: 1.8;
             font-size: 1.1rem;
-            text-align: left; /* Alineado a la izquierda para mejor lectura en párrafos */
+            text-align: left; /* Alineado a la izquierda para mejor lectura de los párrafos */
         }
 
         .about-me-content p {
@@ -257,7 +257,7 @@
         .contact-section {
             padding: 80px 0;
             text-align: center;
-            background-color: var(--background-light);
+            background-color: var(--background-light); /* Utiliza la variable que cambia para modo oscuro/claro */
         }
 
         .contact-section h2 {
@@ -433,11 +433,10 @@
         <div class="container">
             <h2>Conoce a Elías: Tu Guía hacia el Futuro IT</h2>
             <div class="about-me-content">
-                <p>¡Hola! Soy <strong>Elías Coranti</strong>. Sé lo que es sentir esa incertidumbre sobre el futuro y la búsqueda de un mejor camino. Mi historia va desde cortar el pasto del barrio a liderar proyectos de ciberseguridad internacional.</p>
-                <p>He vivido el esfuerzo: me mudé solo para estudiar, me casé, formé una familia y estoy a punto de graduarme, todo sin herencias ni atajos. <strong>La universidad me enseñó paciencia, pero el mercado exige soluciones.</strong> Por eso, <strong>cada paso ha sido fruto de mucho esfuerzo y de confiar en Dios, porque la suerte y las oportunidades se encuentran donde se construyen, no donde se esperan.</strong></p>
-                <p>En <strong>Gala Sandbox</strong>, mi misión es simple: guiarte y brindarte la formación técnica y la mentalidad para que puedas <strong>dominar el mercado global de IT</strong>. Te mostraré el camino para dejar atrás esa preocupación y construir el futuro brillante que mereces. ¡Tu potencial es ilimitado!</p>
-            </div>
-            </div>
+                <p>¡Hola! Soy <strong>Elías Coranti</strong>. Mi historia es un reflejo de la tuya: la búsqueda incansable de un mejor camino. He transitado el esfuerzo de forjar una carrera en ciberseguridad internacional, superando desafíos y aprendiendo que <strong>la universidad te forma en paciencia, pero el mercado exige soluciones concretas.</strong></p>
+                <p>En <strong>Gala Sandbox</strong>, mi misión es simple: guiarte con conocimiento práctico y la mentalidad adecuada para que puedas <strong>dominar el mercado global de IT</strong>. Te mostraré el camino para dejar atrás la incertidumbre y construir un futuro brillante. ¡Tu potencial es ilimitado!</p>
+                </div>
+        </div>
     </section>
 
     <section class="contact-section">
