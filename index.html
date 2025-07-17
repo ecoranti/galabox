@@ -50,6 +50,7 @@
             background-color: var(--background-light);
             color: var(--text-light);
             transition: background-color 0.4s ease, color 0.4s ease; /* Transición más suave */
+            padding-top: 60px; /* Espacio para el header fijo */
         }
 
         .container {
@@ -62,9 +63,13 @@
         header {
             background-color: var(--primary-dark-blue);
             color: #fff;
-            padding: 1rem 0;
-            position: relative;
-            z-index: 1000;
+            padding: 1rem 0; /* Más angosto */
+            position: fixed; /* Header fijo */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Sombra sutil */
         }
 
         header .container {
@@ -102,37 +107,20 @@
             text-align: center;
             padding: 100px 20px;
             min-height: 500px;
-            display: flex;
+            display: flex; /* Usamos flexbox para centrar contenido */
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            position: relative; /* Para el overlay si se añade imagen */
-            overflow: hidden; /* Asegura que el gradiente ocupe todo */
-        }
-
-        /* Opcional: Si quieres un overlay de imagen sutil sobre el gradiente
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://source.unsplash.com/random/1600x900/?tech,abstract') no-repeat center center/cover;
-            opacity: 0.15; // Opacidad baja para que se vea el gradiente
-            z-index: 1;
-        }
-        .hero > * {
+            align-items: center; /* Centrado horizontal y vertical */
             position: relative;
-            z-index: 2;
+            overflow: hidden;
         }
-        */
 
         .hero h2 {
             font-size: 3.5rem;
             margin-bottom: 20px;
             font-weight: 700;
             line-height: 1.2;
+            max-width: 900px; /* Limita ancho para mejor lectura */
         }
 
         .hero p {
@@ -153,7 +141,7 @@
             font-size: 1.1rem;
             transition: transform 0.2s ease, box-shadow 0.3s ease, opacity 0.3s ease; /* Transición más completa */
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-            border: none; /* Asegurar que no haya bordes por defecto */
+            border: none;
         }
 
         .btn:hover {
@@ -166,13 +154,13 @@
         .courses-section {
             padding: 80px 0;
             text-align: center;
-            background-color: var(--background-light); /* Asegurar que el fondo coincida */
+            background-color: var(--background-light);
         }
 
         .courses-section h2 {
             font-size: 2.5rem;
             margin-bottom: 50px;
-            color: var(--primary-dark-blue); /* Color de título oscuro */
+            color: var(--primary-dark-blue);
             font-weight: 700;
         }
 
@@ -199,7 +187,7 @@
 
         .course-card .icon {
             font-size: 3rem;
-            color: var(--accent-green-platzi); /* Iconos en verde vibrante */
+            color: var(--accent-green-platzi);
             margin-bottom: 15px;
             text-align: center;
             width: 100%;
@@ -208,7 +196,7 @@
         .course-card h3 {
             font-size: 1.6rem;
             margin-bottom: 10px;
-            color: var(--primary-dark-blue); /* Título de tarjeta oscuro */
+            color: var(--primary-dark-blue);
             font-weight: 600;
         }
 
@@ -219,24 +207,23 @@
         }
 
         .course-card .btn {
-            background: var(--accent-green-platzi); /* Botones de inscripción en verde */
+            background: var(--accent-green-platzi);
             font-size: 0.9rem;
             padding: 10px 20px;
-            box-shadow: none; /* Remover sombra extra en botones de card */
+            box-shadow: none;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         .course-card .btn:hover {
             background: var(--hover-platzi);
             transform: translateY(-2px);
-            opacity: 1; /* Asegurar que no se reduzca la opacidad */
+            opacity: 1;
         }
 
-
-        /* About Me Section */
+        /* About Me Section (Resumida para Landing) */
         .about-me-section {
             padding: 80px 0;
-            background-color: var(--card-background-light); /* Fondo de sección similar a cards */
+            background-color: var(--card-background-light);
             text-align: center;
             border-top: 1px solid var(--border-light);
             border-bottom: 1px solid var(--border-light);
@@ -254,7 +241,7 @@
             margin: 0 auto;
             line-height: 1.8;
             font-size: 1.1rem;
-            text-align: justify; /* Justificar el texto para mejor lectura */
+            /* Texto más conciso, no necesita justificar si es corto */
         }
 
         .about-me-content p {
@@ -298,6 +285,19 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            body {
+                padding-top: 50px; /* Ajuste para header fijo en móviles */
+            }
+
+            header {
+                padding: 0.8rem 0; /* Header más angosto en móvil */
+            }
+
+            .hero {
+                padding: 80px 20px; /* Reducir padding en hero para móviles */
+                min-height: 400px;
+            }
+
             .hero h2 {
                 font-size: 2.5rem;
             }
@@ -427,23 +427,20 @@
 
     <section class="about-me-section">
         <div class="container">
-            <h2>Sobre Mí: Desde el Barrio a la Ciberseguridad Global — Mi Historia y Mi Propósito</h2>
+            <h2>Conoce a Elías: Tu Guía hacia el Futuro IT</h2>
             <div class="about-me-content">
-                <p>¡Hola! Soy **Elías Coranti**. Sé lo que es sentir esa **incertidumbre que te consume sobre el futuro**, esa pregunta constante de "¿cómo salgo adelante?" o "¿cómo consigo ese trabajo que me cambie la vida?". Lo viví en carne propia, y mi historia es la prueba de que el cambio es posible.</p>
-                <p>Nací en una familia numerosa, somos 11 hermanos, con un padre electricista y una madre que ha dedicado su vida a nuestra familia. Desde chico, mi **curiosidad insaciable** me impulsaba a desarmar, reparar e inventar. Mi paso por un colegio aeronáutico solo encendió más esa chispa por los oficios: carpintería, electricidad, electrónica… siempre quise **conocer y hacer cosas nuevas**.</p>
-                <p>Mis primeros pasos laborales fueron ayudando a mi papá como electricista, y sí, también con mis hermanos **cortábamos el pasto del barrio** con una Zanella 50 y un carrito. Fue un inicio humilde, lleno de esfuerzo, pero con una ambición creciente. Decidí que era momento de ir por más y me enfoqué en mi carrera de Ingeniería en Telecomunicaciones.</p>
-                <p>En **2018, di mi primer salto al mundo IT profesional en IGNetworks**. Ahí no solo crecí muchísimo en redes, sino que transformé mi inglés básico de secundaria en una herramienta diaria. Luego, tuve el honor de administrar la red de Volkswagen para T-System. Pero el verdadero punto de inflexión llegó al hacer **trabajos remotos para empresas extranjeras**, pagados en USD. Me di cuenta de algo poderoso: mi conocimiento técnico y mi inglés eran las llaves para **acceder a un mundo de oportunidades globales**, más allá de las fronteras.</p>
-                <p>Así, a fines de 2023, después de muchísimas entrevistas y con un nivel técnico y de inglés sólido, concreté una negociación para **trabajar como contractor para una empresa extranjera desde Argentina**. Significa renunciar a "beneficios" tradicionales: no hay aguinaldo, no hay vacaciones pagas, ni kit de bienvenida. Pero la libertad es inmensa: **me pagan por lo que sé, por mi experiencia y por mis capacidades**, sin límites.</p>
-                <p>Sé que en Latinoamérica muchos jóvenes sienten un profundo dolor por la **falta de oportunidades**, los trabajos mal pagados y la **incertidumbre de qué será de ellos mañana**. Yo quiero ayudarte a superar eso. Mi misión con **Gala Sandbox** es simple: guiarte, animarte y brindarte la **formación técnica de élite y la mentalidad** que te permitan no solo competir, sino **dominar el mercado global de IT**. Te mostraré el camino para dejar atrás esa preocupación, conseguir un mejor trabajo y **construir el futuro brillante que mereces**. ¡Tu potencial es ilimitado y estoy aquí para ayudarte a desbloquearlo!</p>
+                <p>¡Hola! Soy **Elías Coranti**. Sé lo que es sentir esa incertidumbre sobre el futuro y la búsqueda de un mejor camino. Mi historia va desde cortar el pasto del barrio a liderar proyectos de ciberseguridad internacional.</p>
+                <p>He vivido el esfuerzo: me mudé solo para estudiar, me casé, formé una familia y estoy a punto de graduarme, todo sin herencias ni atajos. **Cada paso ha sido fruto de mucho esfuerzo y de confiar en Dios, porque la suerte y las oportunidades se encuentran donde se construyen, no donde se esperan.**</p>
+                <p>En **Gala Sandbox**, mi misión es simple: guiarte y brindarte la formación técnica y la mentalidad para que puedas **dominar el mercado global de IT**. Te mostraré el camino para dejar atrás esa preocupación y construir el futuro brillante que mereces. ¡Tu potencial es ilimitado!</p>
             </div>
-        </div>
+            </div>
     </section>
 
     <section class="contact-section">
         <div class="container">
             <h2>Únete a Nuestra Comunidad IT: Tu Primer Paso Hacia el Futuro</h2>
-            <p>¿Estás listo para **romper la barrera de la incertidumbre**? ¿Cansado de no saber cómo empezar o cómo mejorar tu situación laboral? Si tú o alguien a quien valoras busca un **cambio real y un futuro próspero en tecnología**, has llegado al lugar correcto.</p>
-            <p>Conéctate con Elías y otros profesionales, haz preguntas y encuentra el apoyo, la inspiración y las herramientas que necesitas para tu transformación. **No estás solo en este camino.**</p>
+            <p>¿Estás listo para romper la barrera de la incertidumbre? ¿Cansado de no saber cómo empezar o cómo mejorar tu situación laboral? Si tú o alguien a quien valoras busca un cambio real y un futuro próspero en tecnología, has llegado al lugar correcto.</p>
+            <p>Conéctate con Elías y otros profesionales, haz preguntas y encuentra el apoyo, la inspiración y las herramientas que necesitas para tu transformación. No estás solo en este camino.</p>
             <a href="https://t.me/tu_grupo_telegram" target="_blank" class="btn">¡Únete a Telegram Ahora y Empieza el Cambio!</a>
         </div>
     </section>
