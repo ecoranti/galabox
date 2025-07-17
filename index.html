@@ -1,31 +1,157 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Academia Técnica LATAM</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gala Sandbox</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg-light: #f8fafc;
+      --color-bg-dark: #1e293b;
+      --color-text-light: #1e293b;
+      --color-text-dark: #f1f5f9;
+      --color-primary: #3b82f6;
+      --color-secondary: #64748b;
+      --transition: all 0.3s ease-in-out;
+    }
+
+    [data-theme="dark"] {
+      background-color: var(--color-bg-dark);
+      color: var(--color-text-dark);
+    }
+
+    [data-theme="light"] {
+      background-color: var(--color-bg-light);
+      color: var(--color-text-light);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: var(--transition);
+    }
+
+    header {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    p.lead {
+      font-size: 1.2rem;
+      color: var(--color-secondary);
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      background-color: var(--color-primary);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn:hover {
+      background-color: #2563eb;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: var(--color-secondary);
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: 1px solid var(--color-secondary);
+      border-radius: 6px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
+    }
+
+    [data-theme="dark"] .card {
+      background-color: #334155;
+    }
+  </style>
 </head>
-<body>
+<body data-theme="light">
+  <button class="theme-toggle" onclick="toggleTheme()">Cambiar tema</button>
   <header>
-    <h1>Academia Técnica LATAM</h1>
-    <p>Formación en Redes, Ciberseguridad, Netskope y Strata para hispanohablantes.</p>
-    <a href="#cursos" class="btn">Ver cursos disponibles</a>
+    <h1>Gala Sandbox</h1>
+    <p class="lead">Cursos técnicos en español para destacar en el mundo IT</p>
+    <button class="btn" onclick="document.getElementById('cursos').scrollIntoView({behavior: 'smooth'});">
+      Ver cursos
+    </button>
   </header>
 
   <section id="cursos">
     <h2>Cursos disponibles</h2>
-    <ul>
-      <li>🌎 Introducción al mundo tech</li>
-      <li>📡 Fundamentos de Redes</li>
-      <li>🔐 Ciberseguridad desde cero</li>
-      <li>☁️ Administración de Netskope</li>
-      <li>🛡️ Administración de Strata</li>
-    </ul>
+    <div class="card">
+      <h3>🌎 Introducción al mundo tech</h3>
+      <p>Entendé el contexto global y por qué necesitamos formar talento técnico en Latinoamérica.</p>
+    </div>
+    <div class="card">
+      <h3>📡 Fundamentos de Redes</h3>
+      <p>Modelos OSI y TCP/IP, direccionamiento IP, switches, routers y más.</p>
+    </div>
+    <div class="card">
+      <h3>🔐 Ciberseguridad desde cero</h3>
+      <p>Aprendé principios de seguridad, amenazas comunes y cómo proteger activos digitales.</p>
+    </div>
+    <div class="card">
+      <h3>☁️ Administración de Netskope</h3>
+      <p>Dominá la plataforma de seguridad en la nube más potente del mercado.</p>
+    </div>
+    <div class="card">
+      <h3>🛡️ Administración de Strata</h3>
+      <p>Configuración de políticas, gestión de tráfico y visibilidad avanzada.</p>
+    </div>
   </section>
 
   <footer>
-    <p>© 2025 Elias Coranti. Todos los derechos reservados.</p>
+    © 2025 Elias Coranti | Desarrollado con pasión para educar y transformar.
   </footer>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const current = body.getAttribute('data-theme');
+      body.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+    }
+  </script>
 </body>
 </html>
