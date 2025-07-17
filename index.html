@@ -1,110 +1,480 @@
-<section class="search-section">
-  <div class="search-container">
-    <h2 class="search-heading">¿Qué te gustaría aprender hoy?</h2>
-    <div class="search-box">
-      <input type="text" id="course-search" placeholder="Buscar cursos, habilidades o áreas..." />
-      <button class="search-button">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon-search" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C8.01 14 6 11.99 6 9.5S8.01 5 10.5 5s4.5 2.01 4.5 4.5S12.99 14 10.5 14z"/></svg>
-      </button>
-    </div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gala Sandbox - Formación Técnica IT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Colores inspirados en Platzi para el modo claro */
+            --background-light: #f0f2f5; /* Fondo más suave */
+            --text-light: #2c3e50; /* Texto oscuro */
+            --card-background-light: #ffffff;
+            --border-light: #e0e6ed;
+            --primary-dark-blue: #1c2b3e; /* Azul oscuro para header/footer */
 
-    <div class="search-highlight">
-      <p class="highlight-title">✨ Explorá nuestros cursos destacados</p>
-      <ul class="suggested-courses">
-        <li>🔒 Introducción a Ciberseguridad</li>
-        <li>🤖 Fundamentos de Inteligencia Artificial</li>
-        <li>🗣️ Inglés A1 para principiantes</li>
-      </ul>
-    </div>
-  </div>
-</section>
+            /* Colores vibrantes y gradientes */
+            --gradient-start-platzi: #2c3e50; /* Azul oscuro */
+            --gradient-end-platzi: #4CAF50; /* Verde brillante */
+            --accent-green-platzi: #4CAF50; /* Verde principal para CTA */
+            --accent-blue-platzi: #2196F3; /* Azul para algunos acentos */
+            --hover-platzi: #388E3C; /* Verde más oscuro al hover */
 
-<style>
-  .search-section {
-    background: linear-gradient(135deg, #0d1117, #1f2937);
-    color: white;
-    padding: 80px 20px;
-    text-align: center;
-  }
+            --footer-text-light: #a0a0a0; /* Gris claro para footer */
+        }
 
-  .search-container {
-    max-width: 720px;
-    margin: 0 auto;
-  }
+        [data-theme="dark"] {
+            /* Colores para el modo oscuro, manteniendo la vibración */
+            --background-light: #121212;
+            --text-light: #e0e0e0;
+            --card-background-light: #1e1e1e;
+            --border-light: #333;
+            --primary-dark-blue: #0f0f0f;
 
-  .search-heading {
-    font-size: 2.2rem;
-    margin-bottom: 24px;
-  }
+            /* Colores vibrantes y gradientes en oscuro */
+            --gradient-start-platzi: #0f0f0f;
+            --gradient-end-platzi: #388E3C; /* Verde oscuro */
+            --accent-green-platzi: #66BB6A; /* Verde más claro para CTA en oscuro */
+            --accent-blue-platzi: #64B5F6; /* Azul más claro */
+            --hover-platzi: #5cb85c; /* Verde al hover */
 
-  .search-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    max-width: 600px;
-    margin: 0 auto;
-  }
+            --footer-text-light: #777;
+        }
 
-  .search-box input {
-    flex-grow: 1;
-    padding: 14px 20px;
-    font-size: 1rem;
-    border: none;
-    outline: none;
-  }
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: var(--background-light);
+            color: var(--text-light);
+            transition: background-color 0.4s ease, color 0.4s ease; /* Transición más suave */
+        }
 
-  .search-button {
-    background: #3b82f6;
-    color: white;
-    border: none;
-    padding: 0 16px;
-    cursor: pointer;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    transition: background 0.3s;
-  }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-  .search-button:hover {
-    background: #2563eb;
-  }
+        /* Header */
+        header {
+            background-color: var(--primary-dark-blue);
+            color: #fff;
+            padding: 1rem 0;
+            position: relative;
+            z-index: 1000;
+        }
 
-  .icon-search {
-    width: 24px;
-    height: 24px;
-  }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-  .search-highlight {
-    margin-top: 40px;
-    text-align: left;
-  }
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
 
-  .highlight-title {
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-bottom: 12px;
-  }
+        .theme-toggle {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
 
-  .suggested-courses {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+        .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: #fff;
+        }
 
-  .suggested-courses li {
-    background-color: #1f2937;
-    padding: 12px 16px;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    transition: background 0.3s;
-    cursor: pointer;
-  }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, var(--gradient-start-platzi), var(--gradient-end-platzi)); /* Gradiente de Platzi */
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Para el overlay si se añade imagen */
+            overflow: hidden; /* Asegura que el gradiente ocupe todo */
+        }
 
-  .suggested-courses li:hover {
-    background-color: #374151;
-  }
-</style>
+        /* Opcional: Si quieres un overlay de imagen sutil sobre el gradiente
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://source.unsplash.com/random/1600x900/?tech,abstract') no-repeat center center/cover;
+            opacity: 0.15; // Opacidad baja para que se vea el gradiente
+            z-index: 1;
+        }
+        .hero > * {
+            position: relative;
+            z-index: 2;
+        }
+        */
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--accent-green-platzi), var(--accent-blue-platzi)); /* Gradiente para botones */
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s ease, box-shadow 0.3s ease, opacity 0.3s ease; /* Transición más completa */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            border: none; /* Asegurar que no haya bordes por defecto */
+        }
+
+        .btn:hover {
+            transform: translateY(-3px); /* Efecto de elevación */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+            opacity: 0.9; /* Ligera opacidad */
+        }
+
+        /* Courses Section */
+        .courses-section {
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--background-light); /* Asegurar que el fondo coincida */
+        }
+
+        .courses-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-dark-blue); /* Color de título oscuro */
+            font-weight: 700;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background-color: var(--card-background-light);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: left;
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-card .icon {
+            font-size: 3rem;
+            color: var(--accent-green-platzi); /* Iconos en verde vibrante */
+            margin-bottom: 15px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .course-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            color: var(--primary-dark-blue); /* Título de tarjeta oscuro */
+            font-weight: 600;
+        }
+
+        .course-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+
+        .course-card .btn {
+            background: var(--accent-green-platzi); /* Botones de inscripción en verde */
+            font-size: 0.9rem;
+            padding: 10px 20px;
+            box-shadow: none; /* Remover sombra extra en botones de card */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .course-card .btn:hover {
+            background: var(--hover-platzi);
+            transform: translateY(-2px);
+            opacity: 1; /* Asegurar que no se reduzca la opacidad */
+        }
+
+
+        /* About Me Section */
+        .about-me-section {
+            padding: 80px 0;
+            background-color: var(--card-background-light); /* Fondo de sección similar a cards */
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .about-me-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--primary-dark-blue);
+            font-weight: 700;
+        }
+
+        .about-me-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            text-align: justify; /* Justificar el texto para mejor lectura */
+        }
+
+        .about-me-content p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--background-light);
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--primary-dark-blue);
+            font-weight: 700;
+        }
+
+        .contact-section p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark-blue);
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin: 0;
+            color: var(--footer-text-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .courses-section h2,
+            .about-me-section h2,
+            .contact-section h2 {
+                font-size: 2rem;
+            }
+
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header .container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Gala Sandbox</h1>
+            <button class="theme-toggle" aria-label="Cambiar tema">Modo Claro/Oscuro</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Formación técnica para latinos que quieren conquistar el mundo IT</h2>
+            <p>Conocimiento práctico y experiencia internacional en ciberseguridad para impulsar tu carrera.</p>
+            <a href="#courses" class="btn">Ver cursos</a>
+        </div>
+    </section>
+
+    <section id="courses" class="courses-section">
+        <div class="container">
+            <h2>Nuestros Cursos</h2>
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="icon">💻</div>
+                    <h3>Introducción al mundo tech</h3>
+                    <p>Descubre los fundamentos del ecosistema tecnológico y cómo posicionarte para el éxito. Aprende por qué es crucial no quedarse atrás y cómo avanzar.</p>
+                    <p>
+                        <strong>Duración:</strong> 10 horas<br>
+                        <strong>Formato:</strong> Grabado<br>
+                        <strong>Dificultad:</strong> Básico
+                    </p>
+                    <a href="#" class="btn">Inscribirme</a>
+                </div>
+                <div class="course-card">
+                    <div class="icon">🌐</div>
+                    <h3>Fundamentos de Redes</h3>
+                    <p>Domina los modelos OSI y TCP/IP, protocolos esenciales y arquitecturas de red que sustentan toda la infraestructura tecnológica.</p>
+                    <p>
+                        <strong>Duración:</strong> 15 horas<br>
+                        <strong>Formato:</strong> Grabado<br>
+                        <strong>Dificultad:</strong> Básico-Intermedio
+                    </p>
+                    <a href="#" class="btn">Inscribirme</a>
+                </div>
+                <div class="course-card">
+                    <div class="icon">🔒</div>
+                    <h3>Ciberseguridad desde cero</h3>
+                    <p>Inicia tu camino en la ciberseguridad con los principios básicos, amenazas comunes y los roles clave en la protección de sistemas.</p>
+                    <p>
+                        <strong>Duración:</strong> 12 horas<br>
+                        <strong>Formato:</strong> Grabado<br>
+                        <strong>Dificultad:</strong> Básico
+                    </p>
+                    <a href="#" class="btn">Inscribirme</a>
+                </div>
+                <div class="course-card">
+                    <div class="icon">🛡️</div>
+                    <h3>Administración de Netskope</h3>
+                    <p>Aprende a gestionar políticas, usuarios y logs con Netskope, una de las plataformas líderes en seguridad de la nube (CASB).</p>
+                    <p>
+                        <strong>Duración:</strong> 20 horas<br>
+                        <strong>Formato:</strong> En vivo/Grabado<br>
+                        <strong>Dificultad:</strong> Intermedio
+                    </p>
+                    <a href="#" class="btn">Inscribirme</a>
+                </div>
+                <div class="course-card">
+                    <div class="icon">⚙️</div>
+                    <h3>Administración de Strata</h3>
+                    <p>Domina la segmentación de red, creación de reglas y control de acceso utilizando la tecnología Strata para una seguridad robusta.</p>
+                    <p>
+                        <strong>Duración:</strong> 18 horas<br>
+                        <strong>Formato:</strong> En vivo/Grabado<br>
+                        <strong>Dificultad:</strong> Intermedio-Avanzado
+                    </p>
+                    <a href="#" class="btn">Inscribirme</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-me-section">
+        <div class="container">
+            <h2>Sobre Mí: Desde el Barrio a la Ciberseguridad Global — Mi Historia y Mi Propósito</h2>
+            <div class="about-me-content">
+                <p>¡Hola! Soy **Elías Coranti**. Sé lo que es sentir esa **incertidumbre que te consume sobre el futuro**, esa pregunta constante de "¿cómo salgo adelante?" o "¿cómo consigo ese trabajo que me cambie la vida?". Lo viví en carne propia, y mi historia es la prueba de que el cambio es posible.</p>
+                <p>Nací en una familia numerosa, somos 11 hermanos, con un padre electricista y una madre que ha dedicado su vida a nuestra familia. Desde chico, mi **curiosidad insaciable** me impulsaba a desarmar, reparar e inventar. Mi paso por un colegio aeronáutico solo encendió más esa chispa por los oficios: carpintería, electricidad, electrónica… siempre quise **conocer y hacer cosas nuevas**.</p>
+                <p>Mis primeros pasos laborales fueron ayudando a mi papá como electricista, y sí, también con mis hermanos **cortábamos el pasto del barrio** con una Zanella 50 y un carrito. Fue un inicio humilde, lleno de esfuerzo, pero con una ambición creciente. Decidí que era momento de ir por más y me enfoqué en mi carrera de Ingeniería en Telecomunicaciones.</p>
+                <p>En **2018, di mi primer salto al mundo IT profesional en IGNetworks**. Ahí no solo crecí muchísimo en redes, sino que transformé mi inglés básico de secundaria en una herramienta diaria. Luego, tuve el honor de administrar la red de Volkswagen para T-System. Pero el verdadero punto de inflexión llegó al hacer **trabajos remotos para empresas extranjeras**, pagados en USD. Me di cuenta de algo poderoso: mi conocimiento técnico y mi inglés eran las llaves para **acceder a un mundo de oportunidades globales**, más allá de las fronteras.</p>
+                <p>Así, a fines de 2023, después de muchísimas entrevistas y con un nivel técnico y de inglés sólido, concreté una negociación para **trabajar como contractor para una empresa extranjera desde Argentina**. Significa renunciar a "beneficios" tradicionales: no hay aguinaldo, no hay vacaciones pagas, ni kit de bienvenida. Pero la libertad es inmensa: **me pagan por lo que sé, por mi experiencia y por mis capacidades**, sin límites.</p>
+                <p>Sé que en Latinoamérica muchos jóvenes sienten un profundo dolor por la **falta de oportunidades**, los trabajos mal pagados y la **incertidumbre de qué será de ellos mañana**. Yo quiero ayudarte a superar eso. Mi misión con **Gala Sandbox** es simple: guiarte, animarte y brindarte la **formación técnica de élite y la mentalidad** que te permitan no solo competir, sino **dominar el mercado global de IT**. Te mostraré el camino para dejar atrás esa preocupación, conseguir un mejor trabajo y **construir el futuro brillante que mereces**. ¡Tu potencial es ilimitado y estoy aquí para ayudarte a desbloquearlo!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <h2>Únete a Nuestra Comunidad IT: Tu Primer Paso Hacia el Futuro</h2>
+            <p>¿Estás listo para **romper la barrera de la incertidumbre**? ¿Cansado de no saber cómo empezar o cómo mejorar tu situación laboral? Si tú o alguien a quien valoras busca un **cambio real y un futuro próspero en tecnología**, has llegado al lugar correcto.</p>
+            <p>Conéctate con Elías y otros profesionales, haz preguntas y encuentra el apoyo, la inspiración y las herramientas que necesitas para tu transformación. **No estás solo en este camino.**</p>
+            <a href="https://t.me/tu_grupo_telegram" target="_blank" class="btn">¡Únete a Telegram Ahora y Empieza el Cambio!</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Elías Coranti / Gala Sandbox. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript para el cambio de tema
+        const themeToggle = document.querySelector('.theme-toggle');
+        const body = document.body;
+
+        // Función para aplicar el tema
+        function applyTheme(theme) {
+            body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+
+        // Cargar tema guardado o por defecto
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+
+        // Event listener para el botón de cambio de tema
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            applyTheme(newTheme);
+        });
+    </script>
+</body>
+</html>
