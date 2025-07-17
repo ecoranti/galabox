@@ -12,7 +12,7 @@
             --text-light: #2c3e50; /* Texto oscuro */
             --card-background-light: #ffffff;
             --border-light: #e0e6ed;
-            --primary-dark-blue: #1c2b3e; /* Azul oscuro para header/footer */
+            --primary-dark-blue: #1c2b3e; /* Azul oscuro para header/footer y algunos títulos */
 
             /* Colores vibrantes y gradientes */
             --gradient-start-platzi: #2c3e50; /* Azul oscuro */
@@ -22,15 +22,18 @@
             --hover-platzi: #388E3C; /* Verde más oscuro al hover */
 
             --footer-text-light: #a0a0a0; /* Gris claro para footer */
+
+            --heading-light-theme: var(--primary-dark-blue); /* Color de títulos en tema claro */
+            --heading-dark-theme: #e0e0e0; /* Color de títulos en tema oscuro */
         }
 
         [data-theme="dark"] {
             /* Colores para el modo oscuro, manteniendo la vibración */
             --background-light: #121212;
             --text-light: #e0e0e0;
-            --card-background-light: #1e1e1e;
+            --card-background-light: #2a2a2a; /* Fondo de tarjetas más claro en modo oscuro */
             --border-light: #333;
-            --primary-dark-blue: #0f0f0f;
+            --primary-dark-blue: #0f0f0f; /* Color base oscuro */
 
             /* Colores vibrantes y gradientes en oscuro */
             --gradient-start-platzi: #0f0f0f;
@@ -40,6 +43,8 @@
             --hover-platzi: #5cb85c; /* Verde al hover */
 
             --footer-text-light: #777;
+
+            --heading-light-theme: #e0e0e0; /* En modo oscuro, los títulos se aclaran */
         }
 
         body {
@@ -160,7 +165,7 @@
         .courses-section h2 {
             font-size: 2.5rem;
             margin-bottom: 50px;
-            color: var(--primary-dark-blue);
+            color: var(--heading-light-theme); /* Usar la nueva variable para títulos */
             font-weight: 700;
         }
 
@@ -171,7 +176,7 @@
         }
 
         .course-card {
-            background-color: var(--card-background-light);
+            background-color: var(--card-background-light); /* Ahora cambia en dark mode */
             border-radius: 10px;
             padding: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
@@ -196,7 +201,7 @@
         .course-card h3 {
             font-size: 1.6rem;
             margin-bottom: 10px;
-            color: var(--primary-dark-blue);
+            color: var(--heading-light-theme); /* Título de tarjeta también cambia */
             font-weight: 600;
         }
 
@@ -223,7 +228,7 @@
         /* About Me Section (Resumida para Landing) */
         .about-me-section {
             padding: 80px 0;
-            background-color: var(--card-background-light);
+            background-color: var(--card-background-light); /* Cambia en dark mode */
             text-align: center;
             border-top: 1px solid var(--border-light);
             border-bottom: 1px solid var(--border-light);
@@ -232,7 +237,7 @@
         .about-me-section h2 {
             font-size: 2.5rem;
             margin-bottom: 40px;
-            color: var(--primary-dark-blue);
+            color: var(--heading-light-theme); /* Usar la nueva variable para títulos */
             font-weight: 700;
         }
 
@@ -241,7 +246,6 @@
             margin: 0 auto;
             line-height: 1.8;
             font-size: 1.1rem;
-            /* Texto más conciso, no necesita justificar si es corto */
         }
 
         .about-me-content p {
@@ -259,7 +263,7 @@
         .contact-section h2 {
             font-size: 2.5rem;
             margin-bottom: 40px;
-            color: var(--primary-dark-blue);
+            color: var(--heading-light-theme); /* Usar la nueva variable para títulos */
             font-weight: 700;
         }
 
