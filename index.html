@@ -23,8 +23,7 @@
 
             --footer-text-light: #a0a0a0; /* Gris claro para footer */
 
-            --heading-light-theme: var(--primary-dark-blue); /* Color de títulos en tema claro */
-            --heading-dark-theme: #e0e0e0; /* Color de títulos en tema oscuro */
+            --heading-color: var(--primary-dark-blue); /* Color de títulos en tema claro */
         }
 
         [data-theme="dark"] {
@@ -44,7 +43,7 @@
 
             --footer-text-light: #777;
 
-            --heading-light-theme: #e0e0e0; /* En modo oscuro, los títulos se aclaran */
+            --heading-color: #e0e0e0; /* En modo oscuro, los títulos se aclaran */
         }
 
         body {
@@ -55,7 +54,7 @@
             background-color: var(--background-light);
             color: var(--text-light);
             transition: background-color 0.4s ease, color 0.4s ease; /* Transición más suave */
-            padding-top: 60px; /* Espacio para el header fijo */
+            padding-top: 60px; /* Espacio para el header fijo. Ajustado en @media para móviles. */
         }
 
         .container {
@@ -150,9 +149,9 @@
         }
 
         .btn:hover {
-            transform: translateY(-3px); /* Efecto de elevación */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-            opacity: 0.9; /* Ligera opacidad */
+            transform: translateY(-4px) scale(1.02); /* Ligeramente más alto y un poco más grande */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+            opacity: 1; /* Asegura opacidad completa */
         }
 
         /* Courses Section */
@@ -165,7 +164,7 @@
         .courses-section h2 {
             font-size: 2.5rem;
             margin-bottom: 50px;
-            color: var(--heading-light-theme); /* Usar la nueva variable para títulos */
+            color: var(--heading-color); /* Usar la nueva variable para títulos */
             font-weight: 700;
         }
 
@@ -201,7 +200,7 @@
         .course-card h3 {
             font-size: 1.6rem;
             margin-bottom: 10px;
-            color: var(--heading-light-theme); /* Título de tarjeta también cambia */
+            color: var(--heading-color); /* Título de tarjeta también cambia */
             font-weight: 600;
         }
 
@@ -237,7 +236,7 @@
         .about-me-section h2 {
             font-size: 2.5rem;
             margin-bottom: 40px;
-            color: var(--heading-light-theme); /* Usar la nueva variable para títulos */
+            color: var(--heading-color); /* Usar la nueva variable para títulos */
             font-weight: 700;
         }
 
@@ -246,6 +245,7 @@
             margin: 0 auto;
             line-height: 1.8;
             font-size: 1.1rem;
+            text-align: left; /* Alineado a la izquierda para mejor lectura en párrafos */
         }
 
         .about-me-content p {
@@ -263,7 +263,7 @@
         .contact-section h2 {
             font-size: 2.5rem;
             margin-bottom: 40px;
-            color: var(--heading-light-theme); /* Usar la nueva variable para títulos */
+            color: var(--heading-color); /* Usar la nueva variable para títulos */
             font-weight: 700;
         }
 
@@ -433,9 +433,9 @@
         <div class="container">
             <h2>Conoce a Elías: Tu Guía hacia el Futuro IT</h2>
             <div class="about-me-content">
-                <p>¡Hola! Soy **Elías Coranti**. Sé lo que es sentir esa incertidumbre sobre el futuro y la búsqueda de un mejor camino. Mi historia va desde cortar el pasto del barrio a liderar proyectos de ciberseguridad internacional.</p>
-                <p>He vivido el esfuerzo: me mudé solo para estudiar, me casé, formé una familia y estoy a punto de graduarme, todo sin herencias ni atajos. **La universidad me enseñó paciencia, pero el mercado exige soluciones.** Por eso, **cada paso ha sido fruto de mucho esfuerzo y de confiar en Dios, porque la suerte y las oportunidades se encuentran donde se construyen, no donde se esperan.**</p>
-                <p>En **Gala Sandbox**, mi misión es simple: guiarte y brindarte la formación técnica y la mentalidad para que puedas **dominar el mercado global de IT**. Te mostraré el camino para dejar atrás esa preocupación y construir el futuro brillante que mereces. ¡Tu potencial es ilimitado!</p>
+                <p>¡Hola! Soy <strong>Elías Coranti</strong>. Sé lo que es sentir esa incertidumbre sobre el futuro y la búsqueda de un mejor camino. Mi historia va desde cortar el pasto del barrio a liderar proyectos de ciberseguridad internacional.</p>
+                <p>He vivido el esfuerzo: me mudé solo para estudiar, me casé, formé una familia y estoy a punto de graduarme, todo sin herencias ni atajos. <strong>La universidad me enseñó paciencia, pero el mercado exige soluciones.</strong> Por eso, <strong>cada paso ha sido fruto de mucho esfuerzo y de confiar en Dios, porque la suerte y las oportunidades se encuentran donde se construyen, no donde se esperan.</strong></p>
+                <p>En <strong>Gala Sandbox</strong>, mi misión es simple: guiarte y brindarte la formación técnica y la mentalidad para que puedas <strong>dominar el mercado global de IT</strong>. Te mostraré el camino para dejar atrás esa preocupación y construir el futuro brillante que mereces. ¡Tu potencial es ilimitado!</p>
             </div>
             </div>
     </section>
