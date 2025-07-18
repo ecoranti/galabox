@@ -25,11 +25,8 @@
 
             --heading-color: var(--primary-dark-blue); /* Color de títulos en tema claro */
 
-            /* Imágenes de fondo para la sección de cursos */
-            --courses-bg-image-light: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            --courses-bg-image-dark: url('https://images.unsplash.com/photo-1547926107-b35581335b71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            --courses-bg-overlay-light: rgba(255, 255, 255, 0.85); /* Overlay blanco para legibilidad en modo claro */
-            --courses-bg-overlay-dark: rgba(0, 0, 0, 0.7); /* Overlay oscuro para legibilidad en modo oscuro */
+            /* Color de fondo para la sección de cursos (sin imágenes) */
+            --courses-section-bg: #e8ecef; /* Un gris muy claro para diferenciarla del fondo principal */
         }
 
         /* Tema oscuro */
@@ -48,6 +45,8 @@
 
             --footer-text-light: #777;
             --heading-color: #e0e0e0;
+
+            --courses-section-bg: #1a1a1a; /* Un gris oscuro para la sección de cursos */
         }
 
         body {
@@ -165,31 +164,13 @@
             position: relative;
             overflow: hidden;
             color: var(--text-light);
-            background-image: var(--courses-bg-image-light); /* Imagen por defecto para modo claro */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            transition: background-image 0.8s ease; /* Transición suave para la imagen de fondo */
+            background-color: var(--courses-section-bg); /* Ahora usa un color de fondo sólido */
+            transition: background-color 0.4s ease; /* Transición suave para el color de fondo */
         }
 
+        /* Eliminamos el pseudo-elemento ::before ya que no hay imagen de fondo */
         .courses-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--courses-bg-overlay-light); /* Overlay por defecto para modo claro */
-            z-index: -1;
-            transition: background-color 0.8s ease; /* Transición suave para el overlay */
-        }
-
-        [data-theme="dark"] .courses-section {
-            background-image: var(--courses-bg-image-dark); /* Cambia la imagen para modo oscuro */
-        }
-
-        [data-theme="dark"] .courses-section::before {
-            background-color: var(--courses-bg-overlay-dark); /* Cambia el overlay para modo oscuro */
+            content: none;
         }
 
         .courses-section .container {
@@ -264,7 +245,7 @@
         .about-me-section {
             padding: 80px 0;
             background-color: var(--card-background-light);
-            text-align: center; /* Centra el div .about-me-content */
+            text-align: center;
             border-top: 1px solid var(--border-light);
             border-bottom: 1px solid var(--border-light);
         }
@@ -278,16 +259,15 @@
 
         .about-me-content {
             max-width: 800px;
-            margin: 0 auto; /* Centra el bloque de contenido horizontalmente */
+            margin: 0 auto;
             line-height: 1.8;
             font-size: 1.1rem;
-            /* Eliminamos text-align: left; para que herede el centrado del padre o se justifique según se vea mejor */
         }
 
         .about-me-content p {
             margin-bottom: 20px;
             color: var(--text-light);
-            text-align: justify; /* Justifica el texto para una lectura más cómoda dentro del bloque centrado */
+            text-align: justify;
         }
 
         /* Contact Section */
@@ -495,20 +475,6 @@
         // JavaScript para el cambio de tema
         const themeToggle = document.querySelector('.theme-toggle');
         const body = document.body;
-
-        // Precargar imágenes de fondo para la sección de cursos
-        const preloadImage = (url) => {
-            const img = new Image();
-            img.src = url;
-        };
-
-        const imageUrlLight = 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
-        const imageUrlDark = 'https://images.unsplash.com/photo-1547926107-b35581335b71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
-
-        // Llama a precargar las imágenes apenas el script se ejecute
-        preloadImage(imageUrlLight);
-        preloadImage(imageUrlDark);
-
 
         // Función para aplicar el tema
         function applyTheme(theme) {
