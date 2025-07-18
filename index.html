@@ -210,7 +210,7 @@
         .philosophy-section {
             padding: 80px 0;
             text-align: center;
-            background-color: var(--card-background-light);
+            background-color: var(--card-background-light); /* Fondo que se vea bien en ambos temas */
             border-bottom: 1px solid var(--border-light);
         }
 
@@ -235,6 +235,7 @@
             font-size: 1.1rem;
         }
 
+
         /* Courses Section (Destacados) */
         .courses-section {
             padding: 80px 0;
@@ -254,7 +255,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-bottom: 50px;
+            margin-bottom: 50px; /* Espacio antes del botón "Ver todos" */
         }
 
         .course-card {
@@ -297,7 +298,7 @@
             line-height: 1.6;
             color: var(--text-light);
             text-align: center;
-            flex-grow: 1;
+            flex-grow: 1; /* Permite que el párrafo de descripción crezca */
         }
 
         .course-card .course-details {
@@ -327,6 +328,7 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
+
 
         /* About Me Section (Pasa a ser más un "Sobre el Creador" o "Mi Historia") */
         .about-me-section {
@@ -384,6 +386,7 @@
             color: var(--text-light);
         }
 
+
         /* Footer */
         footer {
             background-color: var(--primary-dark-blue);
@@ -398,19 +401,83 @@
             color: var(--footer-text-light);
         }
 
-        /* Responsive Design */
+        /* Mobile Menu Specific Styles */
+        .menu-toggle {
+            display: none; /* Hidden by default on larger screens */
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem; /* Larger icon for better tap target */
+            cursor: pointer;
+            padding: 5px 10px;
+            z-index: 1001; /* Ensure it's above other elements */
+        }
+
+        /* Initially hide the nav links on small screens */
+        .nav-links {
+            display: flex; /* Flex on desktop */
+        }
+
         @media (max-width: 768px) {
             body {
                 padding-top: 45px;
             }
 
             header {
-                padding: 0.5rem 0;
+                padding: 0.5rem 20px; /* Add padding to header on small screens */
                 height: 45px;
             }
 
-            header nav ul {
-                gap: 15px;
+            header .container {
+                justify-content: space-between; /* Space out elements */
+                width: 100%;
+            }
+            
+            header nav {
+                display: none; /* Hide the default nav */
+            }
+
+            .nav-links {
+                display: none; /* Hide by default on mobile */
+                flex-direction: column;
+                background-color: var(--primary-dark-blue); /* Dark background for menu */
+                position: fixed;
+                top: 45px; /* Right below the fixed header */
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 45px); /* Take full height minus header */
+                justify-content: center;
+                align-items: center;
+                gap: 30px; /* Spacing between links */
+                opacity: 0;
+                visibility: hidden;
+                transform: translateX(100%); /* Slide in from right */
+                transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, visibility 0.4s ease-in-out;
+                z-index: 999; /* Below header, above content */
+            }
+
+            .nav-links.active {
+                display: flex; /* Show when active */
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(0); /* Slide into view */
+            }
+
+            .nav-links ul {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+                width: 100%;
+            }
+
+            .nav-links a {
+                font-size: 1.5rem; /* Larger font size for mobile */
+                padding: 10px 0;
+                display: block; /* Make links block level for better tapping */
+            }
+
+            .menu-toggle {
+                display: block; /* Show hamburger icon on mobile */
             }
 
             .hero {
@@ -440,18 +507,15 @@
 
         @media (max-width: 480px) {
             header .container {
-                flex-direction: column;
-                gap: 10px;
+                flex-direction: row; /* Keep header elements in a row */
+                justify-content: space-between;
+                align-items: center;
             }
 
             header h1 {
                 font-size: 1.5rem;
             }
-
-            header nav ul {
-                flex-direction: column;
-                gap: 5px;
-            }
+            /* Nav links are handled by the .nav-links.active style */
 
             .hero {
                 padding: 60px 20px;
@@ -478,7 +542,16 @@
     <header>
         <div class="container">
             <h1>Gala Sandbox</h1>
-            <nav>
+            <div class="menu-and-theme">
+                <button class="theme-toggle" aria-label="Cambiar tema">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" aria-label="Abrir menú">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="nav-links">
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#filosofia">Nuestra Filosofía</a></li>
@@ -487,10 +560,6 @@
                     <li><a href="contacto.html">Contacto</a></li>
                 </ul>
             </nav>
-            <button class="theme-toggle" aria-label="Cambiar tema">
-                <i class="fas fa-sun"></i>
-                <i class="fas fa-moon"></i>
-            </button>
         </div>
     </header>
 
@@ -588,6 +657,22 @@
                 const currentTheme = body.getAttribute('data-theme');
                 const newTheme = currentTheme === 'light' ? 'dark' : 'light';
                 applyTheme(newTheme);
+            });
+
+            // JavaScript para el menú móvil
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                // Opcional: Cerrar el menú si se hace clic en un enlace
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                        }
+                    });
+                });
             });
         });
     </script>
