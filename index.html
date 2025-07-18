@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gala Sandbox - Formación Técnica IT</title>
+    <title>Gala Sandbox - Tu Guía en el Mundo IT</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P8BDKCJJ');</script>
     <style>
         :root {
             /* Colores inspirados en Platzi para el modo claro */
@@ -15,7 +21,7 @@
             --border-light: #e0e6ed;
             --primary-dark-blue: #1c2b3e; /* Azul oscuro para header/footer y algunos títulos */
 
-            /* Colores vibrantes y gradientes Estable */
+            /* Colores vibrantes y gradientes */
             --gradient-start-platzi: #2c3e50; /* Azul oscuro */
             --gradient-end-platzi: #4CAF50; /* Verde brillante */
             --accent-green-platzi: #4CAF50; /* Verde principal para CTA */
@@ -51,14 +57,14 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif; /* Aseguramos la tipografía */
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             background-color: var(--background-light);
             color: var(--text-light);
             transition: background-color 0.4s ease, color 0.4s ease;
-            padding-top: 45px; /* Ajuste para la nueva altura del header */
+            padding-top: 45px; /* Ajuste para la altura del header fijo */
         }
 
         .container {
@@ -71,23 +77,23 @@
         header {
             background-color: var(--primary-dark-blue);
             color: #fff;
-            padding: 0.5rem 0; /* Menos padding vertical para hacerlo más angosto */
+            padding: 0.5rem 0;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            height: 45px; /* Altura fija para controlar mejor el espacio */
-            display: flex; /* Para centrar contenido verticalmente */
-            align-items: center; /* Centra los items verticalmente */
+            height: 45px;
+            display: flex;
+            align-items: center;
         }
 
         header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%; /* Asegura que ocupe todo el ancho del header */
+            width: 100%;
         }
 
         header h1 {
@@ -96,17 +102,36 @@
             font-weight: 700;
         }
 
-        /* Estilo para el botón de tema (icono) */
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: var(--accent-green-platzi);
+        }
+
         .theme-toggle {
             background: none;
             border: 1px solid rgba(255, 255, 255, 0.4);
             color: #fff;
-            padding: 8px 12px; /* Ajustar padding para el icono */
+            padding: 8px 12px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 1.2rem; /* Tamaño del icono */
+            font-size: 1.2rem;
             transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-            display: flex; /* Para centrar el icono si es necesario */
+            display: flex;
             align-items: center;
             justify-content: center;
         }
@@ -117,13 +142,11 @@
             color: #fff;
         }
 
-        /* Iconos del botón de tema */
         .theme-toggle .fa-sun,
         .theme-toggle .fa-moon {
-            font-size: 1.2rem; /* Tamaño del icono */
+            font-size: 1.2rem;
         }
 
-        /* Esconder el sol en modo oscuro y la luna en modo claro */
         [data-theme="light"] .theme-toggle .fa-moon {
             display: none;
         }
@@ -132,18 +155,17 @@
             display: none;
         }
 
-
         /* Hero Section */
         .hero {
             background: linear-gradient(to right, var(--gradient-start-platzi), var(--gradient-end-platzi));
             color: #fff;
-            text-align: center; /* Centra los elementos a nivel de bloque */
+            text-align: center;
             padding: 100px 20px;
             min-height: 500px;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Centra verticalmente */
-            align-items: center; /* Centra horizontalmente */
+            justify-content: center;
+            align-items: center;
             position: relative;
             overflow: hidden;
         }
@@ -154,7 +176,7 @@
             font-weight: 700;
             line-height: 1.2;
             max-width: 900px;
-            text-align: center; /* Asegura el centrado del texto h2 */
+            text-align: center;
         }
 
         .hero p {
@@ -162,7 +184,7 @@
             margin-bottom: 40px;
             max-width: 800px;
             line-height: 1.5;
-            text-align: center; /* Asegura el centrado del texto p */
+            text-align: center;
         }
 
         .btn {
@@ -174,30 +196,51 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
-            transition: transform 0.2s ease, box-shadow 0.3s ease; /* Transición para hover */
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
             border: none;
         }
 
         .btn:hover {
-            transform: translateY(-4px) scale(1.02); /* Efecto de levantamiento y ligero crecimiento */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
 
-        /* Courses Section */
+        /* Feature / Philosophy Section */
+        .philosophy-section {
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--card-background-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .philosophy-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--heading-color);
+            font-weight: 700;
+        }
+
+        .philosophy-content {
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-size: 1.15rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .philosophy-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Courses Section (Destacados) */
         .courses-section {
             padding: 80px 0;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-            color: var(--text-light);
             background-color: var(--courses-section-bg);
             transition: background-color 0.4s ease;
-        }
-
-        .courses-section .container {
-            position: relative;
-            z-index: 1;
         }
 
         .courses-section h2 {
@@ -211,6 +254,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            margin-bottom: 50px;
         }
 
         .course-card {
@@ -218,12 +262,11 @@
             border-radius: 10px;
             padding: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            text-align: center;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Empuja el contenido al inicio y al final */
-            height: 100%; /* Permite que el flexbox funcione correctamente con grid */
-            align-items: center; /* Centra el contenido horizontalmente dentro de la tarjeta */
+            justify-content: space-between;
+            height: 100%;
+            align-items: center;
             border: 1px solid var(--border-light);
             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         }
@@ -253,23 +296,22 @@
             font-size: 1rem;
             line-height: 1.6;
             color: var(--text-light);
-            text-align: center; /* Centra los párrafos */
-            flex-grow: 1; /* Permite que el párrafo de descripción crezca y empuje el footer */
+            text-align: center;
+            flex-grow: 1;
         }
 
         .course-card .course-details {
-            margin-top: auto; /* Empuja este div al final de la tarjeta */
+            margin-top: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 10px;
-            width: 100%; /* Asegura que ocupe el ancho completo para el centrado del botón */
+            width: 100%;
         }
 
         .course-card .course-details p {
-            margin-bottom: 0; /* Elimina el margen inferior si ya está dentro de course-details */
+            margin-bottom: 0;
         }
-
 
         .course-card .btn {
             background: var(--accent-green-platzi);
@@ -277,7 +319,7 @@
             padding: 10px 20px;
             box-shadow: none;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            margin-top: 15px; /* Espacio entre los detalles del curso y el botón */
+            margin-top: 15px;
         }
 
         .course-card .btn:hover {
@@ -286,7 +328,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* About Me Section */
+        /* About Me Section (Pasa a ser más un "Sobre el Creador" o "Mi Historia") */
         .about-me-section {
             padding: 80px 0;
             background-color: var(--card-background-light);
@@ -315,28 +357,28 @@
         .about-me-content p {
             margin-bottom: 20px;
             color: var(--text-light);
-            text-align: center; /* Centra el texto en la sección "Sobre mí" */
+            text-align: center;
         }
 
         .about-me-content a.btn {
-            align-self: center; /* Asegura que el botón también esté centrado */
+            align-self: center;
         }
 
-        /* Contact Section */
-        .contact-section {
+        /* Call to Action / Comunidad Section */
+        .cta-community-section {
             padding: 80px 0;
             text-align: center;
             background-color: var(--background-light);
         }
 
-        .contact-section h2 {
+        .cta-community-section h2 {
             font-size: 2.5rem;
             margin-bottom: 40px;
             color: var(--heading-color);
             font-weight: 700;
         }
 
-        .contact-section p {
+        .cta-community-section p {
             font-size: 1.1rem;
             margin-bottom: 30px;
             color: var(--text-light);
@@ -359,12 +401,16 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             body {
-                padding-top: 45px; /* Ajuste para móviles */
+                padding-top: 45px;
             }
 
             header {
-                padding: 0.5rem 0; /* Ajuste para móviles */
+                padding: 0.5rem 0;
                 height: 45px;
+            }
+
+            header nav ul {
+                gap: 15px;
             }
 
             .hero {
@@ -380,9 +426,10 @@
                 font-size: 1.2rem;
             }
 
+            .philosophy-section h2,
             .courses-section h2,
             .about-me-section h2,
-            .contact-section h2 {
+            .cta-community-section h2 {
                 font-size: 2rem;
             }
 
@@ -399,6 +446,11 @@
 
             header h1 {
                 font-size: 1.5rem;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                gap: 5px;
             }
 
             .hero {
@@ -421,9 +473,20 @@
     </style>
 </head>
 <body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P8BDKCJJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header>
         <div class="container">
             <h1>Gala Sandbox</h1>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#filosofia">Nuestra Filosofía</a></li>
+                    <li><a href="cursos.html">Cursos</a></li>
+                    <li><a href="sobre-mi.html">Sobre Mí</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
             <button class="theme-toggle" aria-label="Cambiar tema">
                 <i class="fas fa-sun"></i>
                 <i class="fas fa-moon"></i>
@@ -431,118 +494,79 @@
         </div>
     </header>
 
-    <section class="hero">
+    <section id="inicio" class="hero">
         <div class="container">
-            <h2>Formación técnica para latinos que quieren conquistar el mundo IT</h2>
-            <p>Da el salto al mundo IT con una formación que va más allá de lo técnico. Te preparamos con las <b>habilidades esenciales y la visión estratégica</b> que las empresas IT buscan hoy, desde el primer día. 🚀</p>
-            <a href="#courses" class="btn">Ver cursos</a>
+            <h2>Formación IT para latinos: Conquista el Mercado Global con Confianza</h2>
+            <p>Deja atrás la incertidumbre. Te equipamos con las **habilidades técnicas, la visión estratégica y el acompañamiento** que las empresas tech más exigen hoy. ¡Tu futuro en IT empieza aquí! 🚀</p>
+            <a href="cursos.html" class="btn">Explora Nuestros Cursos</a>
         </div>
     </section>
 
-    <section id="courses" class="courses-section">
+    <section id="filosofia" class="philosophy-section">
         <div class="container">
-            <h2>Nuestros Cursos</h2>
+            <h2>Gala Sandbox: Más que Cursos, Tu Guía Hacia el Éxito</h2>
+            <div class="philosophy-content">
+                <p>En el camino de la tecnología, el esfuerzo individual es clave, pero **el verdadero impulso viene de la guía adecuada.** He tenido la fortuna de contar con líderes que me desafiaron, me afirmaron y me animaron a ir más allá. Hoy, mi misión es ser ese **impulso para ti.**</p>
+                <p>No solo te enseñamos lo técnico; te preparamos para los **desafíos reales del mercado global.** Te acompañamos para que desarrolles no solo habilidades duras, sino también la **confianza y la mentalidad estratégica** para destacar. Porque tu potencial es ilimitado, y con el mentor correcto, puedes alcanzarlo todo.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="cursos" class="courses-section">
+        <div class="container">
+            <h2>Nuestros Cursos Más Populares</h2>
             <div class="course-grid">
 
                 <div class="course-card">
                     <div class="icon">💻</div>
                     <h3>Introducción al mundo tech</h3>
-                    <p>Descubre los pilares del ecosistema tecnológico: qué es una API, cómo funcionan los sistemas y por qué entender la lógica digital te abre la puerta a cualquier rol IT.</p>
+                    <p>Descubre los pilares del ecosistema tecnológico y cómo posicionarte para el éxito.</p>
                     <div class="course-details">
                         <p><b>Duración:</b> 10 horas<br>
-                           <b>Formato:</b> Grabado<br>
                            <b>Dificultad:</b> Básico</p>
-                        <a href="#" class="btn">Inscribirme</a>
+                        <a href="https://hotmart.com/tu-curso-intro" target="_blank" class="btn">Saber Más</a>
                     </div>
                 </div>
 
                 <div class="course-card">
                     <div class="icon">🌐</div>
                     <h3>Fundamentos de Redes</h3>
-                    <p>Aprende cómo fluye la información en Internet: modelos OSI/TCP-IP, direcciones IP, firewalls y cómo se construyen las redes que conectan al mundo.</p>
+                    <p>Domina los modelos OSI y TCP/IP, y los protocolos esenciales que sustentan toda la infraestructura.</p>
                     <div class="course-details">
                         <p><b>Duración:</b> 15 horas<br>
-                           <b>Formato:</b> Grabado<br>
                            <b>Dificultad:</b> Básico-Intermedio</p>
-                        <a href="#" class="btn">Inscribirme</a>
+                        <a href="https://hotmart.com/tu-curso-redes" target="_blank" class="btn">Saber Más</a>
                     </div>
                 </div>
 
                 <div class="course-card">
                     <div class="icon">🔒</div>
                     <h3>Ciberseguridad desde cero</h3>
-                    <p>Inicia en el mundo de la ciberseguridad entendiendo las amenazas reales, cómo protegerte y qué herramientas se usan para asegurar redes y datos.</p>
+                    <p>Inicia tu camino en la ciberseguridad con los principios básicos y amenazas comunes.</p>
                     <div class="course-details">
                         <p><b>Duración:</b> 12 horas<br>
-                           <b>Formato:</b> Grabado<br>
                            <b>Dificultad:</b> Básico</p>
-                        <a href="#" class="btn">Inscribirme</a>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="icon">☁️</div>
-                    <h3>Introducción a la Nube</h3>
-                    <p>Descubre los servicios clave de AWS, Azure y GCP. Aprende los conceptos fundamentales de cloud computing que todo profesional moderno debe manejar.</p>
-                    <div class="course-details">
-                        <p><b>Duración:</b> 14 horas<br>
-                           <b>Formato:</b> Grabado<br>
-                           <b>Dificultad:</b> Intermedio</p>
-                        <a href="#" class="btn">Inscribirme</a>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="icon">💬</div>
-                    <h3>Habilidades Blandas para IT</h3>
-                    <p>Desarrollá habilidades de comunicación, liderazgo, trabajo en equipo y resolución de conflictos, claves para destacar en cualquier entorno tecnológico.</p>
-                    <div class="course-details">
-                        <p><b>Duración:</b> 8 horas<br>
-                           <b>Formato:</b> Grabado<br>
-                           <b>Dificultad:</b> Básico</p>
-                        <a href="#" class="btn">Inscribirme</a>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="icon">📜</div>
-                    <h3>Legal y Facturación para Freelancers</h3>
-                    <p>Aprende cómo cobrar a clientes del exterior, emitir facturas, evitar errores legales y proteger tu trabajo como profesional independiente.</p>
-                    <div class="course-details">
-                        <p><b>Duración:</b> 6 horas<br>
-                           <b>Formato:</b> Grabado<br>
-                           <b>Dificultad:</b> Básico</p>
-                        <a href="#" class="btn">Inscribirme</a>
+                        <a href="https://hotmart.com/tu-curso-ciberseguridad" target="_blank" class="btn">Saber Más</a>
                     </div>
                 </div>
 
             </div>
+            <a href="cursos.html" class="btn">Ver Catálogo Completo de Cursos</a>
         </div>
     </section>
 
-    <section class="about-me-section">
+    <section class="cta-community-section">
         <div class="container">
-            <h2>Te cuento un poco de mi</h2>
-            <div class="about-me-content">
-                <p>¡Hola! Soy <b>Elías Coranti</b>. Mi historia es un reflejo de la tuya: la búsqueda incansable de un mejor camino. He transitado el esfuerzo de forjar una carrera en ciberseguridad internacional, superando desafíos y aprendiendo que <b>la universidad te forma en paciencia, pero el mercado exige soluciones concretas.</b></p>
-                <p>En <b>Gala Sandbox</b>, mi misión es simple: guiarte con conocimiento práctico y la mentalidad adecuada para que puedas <b>dominar el mercado global de IT</b>. Te mostraré el camino para dejar atrás la incertidumbre y construir un futuro brillante. ¡Tu potencial es ilimitado!</p>
-                <a href="sobre-mi.html" class="btn" style="margin-top: 30px;">Conoce mi Historia Completa</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact-section">
-        <div class="container">
-            <h2>Únete a Nuestra Comunidad IT: Tu Primer Paso Hacia el Futuro</h2>
-            <p>¿Estás listo para romper la barrera de la incertidumbre? ¿Cansado de no saber cómo empezar o cómo mejorar tu situación laboral? Si tú o alguien a quien valoras busca un cambio real y un futuro próspero en tecnología, has llegado al lugar correcto.</p>
-            <p>Conéctate con Elías y otros profesionales, haz preguntas y encuentra el apoyo, la inspiración y las herramientas que necesitas para tu transformación. No estás solo en este camino.</p>
-            <a href="https://t.me/tu_grupo_telegram" target="_blank" class="btn">¡Únete a Telegram Ahora y Empieza el Cambio!</a>
+            <h2>¿Listo para dar el Salto? Únete a Nuestra Comunidad IT</h2>
+            <p>Si buscas una guía real, respuestas claras y el apoyo que necesitas para despegar en tecnología, este es tu lugar. Conéctate con Elías y una red de profesionales, comparte dudas y encuentra la inspiración para tu transformación.</p>
+            <a href="https://t.me/tu_grupo_telegram" target="_blank" class="btn">¡Únete a Telegram Ahora!</a>
+            <p style="margin-top: 25px; font-size: 1rem;">O <a href="https://youtube.com/tu_canal_youtube" target="_blank" style="color: var(--accent-blue-platzi); text-decoration: none; font-weight: 600;">visita mi Canal de YouTube</a> para contenido gratuito de valor.</p>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Elías Coranti / Gala Sandbox. Todos los derechos reservados.</p>
+            <p>© 2025 Elías Coranti / Gala Sandbox. Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -551,13 +575,11 @@
         const themeToggle = document.querySelector('.theme-toggle');
         const body = document.body;
 
-        // Función para aplicar el tema
         function applyTheme(theme) {
             body.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
         }
 
-        // Cargar tema guardado o por defecto al cargar el DOM
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme') || 'light';
             applyTheme(savedTheme);
