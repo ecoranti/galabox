@@ -218,7 +218,10 @@
             border-radius: 10px;
             padding: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            text-align: left;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             border: 1px solid var(--border-light);
             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         }
@@ -241,12 +244,14 @@
             margin-bottom: 10px;
             color: var(--heading-color);
             font-weight: 600;
+            text-align: center;
         }
 
         .course-card p {
             font-size: 1rem;
             line-height: 1.6;
             color: var(--text-light);
+            text-align: center;
         }
 
         .course-card .btn {
@@ -254,13 +259,14 @@
             font-size: 0.9rem;
             padding: 10px 20px;
             box-shadow: none;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Transición completa para hover */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            margin-top: 15px;
         }
 
         .course-card .btn:hover {
             background: var(--hover-platzi);
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra más sutil en botones de tarjeta */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         /* About Me Section */
