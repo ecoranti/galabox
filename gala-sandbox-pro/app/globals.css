@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ¡IMPORTANTE! Importa el CSS de Font Awesome desde node_modules */
+@import '@fortawesome/fontawesome-svg-core/styles.css';
+
+/* Definición de variables CSS para los colores */
+:root {
+  /* Colores para tema claro */
+  --color-primary-blue: #0A224D;
+  --color-secondary-green: #4CAF50;
+  --color-accent-blue: #2196F3;
+  --color-hover-green: #388E3C;
+
+  --color-background-light: #F8F8F8;
+  --color-text-light: #333333;
+  --color-card-background-light: #FFFFFF;
+  --color-border-light: #EEEEEE;
+
+  --color-gradient-start-light: #0A224D;
+  --color-gradient-end-light: #4CAF50;
+
+  --color-heading-color-light: var(--color-text-light); /* Títulos claros son texto oscuro */
+  --color-courses-section-bg-light: #e8ecef;
+}
+
+/* Colores para tema oscuro */
+.dark {
+  --color-primary-dark-blue: #1a1a2e;
+  --color-secondary-dark-blue: #2c2c4d;
+  --color-background-dark: #121212;
+  --color-text-dark: #e0e0e0;
+  --color-border-dark: #444444;
+  --color-hover-dark: #4da6ff; /* Un azul claro para hover en dark mode */
+
+  --color-gradient-start-dark: #1a1a2e;
+  --color-gradient-end-dark: #388E3C;
+
+  --color-heading-color-dark: var(--color-text-dark); /* Títulos oscuros son texto claro */
+  --color-card-background-dark: #2a2a2a;
+  --color-courses-section-bg-dark: #1a1a1a;
+}
+
+/* Estilos para el body */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth; /* Para el scroll suave */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Aplica los colores de fondo y texto base del tema claro */
+  background-color: var(--color-background-light);
+  color: var(--color-text-light);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Sobrescribe los colores del body en modo oscuro */
+.dark body {
+  background-color: var(--color-background-dark);
+  color: var(--color-text-dark);
+}
+
+/* Estilos para el botón primario */
+.btn-primary {
+  @apply inline-block py-3 px-8 rounded-full text-lg font-semibold
+         transition-all duration-300 ease-in-out;
+  /* Colores de fondo y texto definidos con var() para cambiar con el tema */
+  background: linear-gradient(to right, var(--color-accent-green), var(--color-accent-blue));
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilos para los enlaces de navegación */
+.nav-link {
+  @apply font-medium transition-colors duration-300 ease-in-out;
+  color: var(--color-text-light); /* Color en tema claro */
+}
+
+/* Estilos para enlaces de navegación en modo oscuro */
+.dark .nav-link {
+  color: var(--color-text-dark); /* Color en tema oscuro */
+}
+
+.nav-link:hover {
+  color: var(--color-secondary-green); /* Hover en tema claro */
+}
+
+.dark .nav-link:hover {
+  color: var(--color-hover-dark); /* Hover en tema oscuro */
+}
+
+/* Puedes añadir más estilos personalizados aquí */
