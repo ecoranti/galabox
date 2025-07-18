@@ -284,12 +284,19 @@
             margin: 0 auto;
             line-height: 1.8;
             font-size: 1.1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .about-me-content p {
             margin-bottom: 20px;
             color: var(--text-light);
-            text-align: justify;
+            text-align: center; /* 🔄 Cambiar de 'justify' a 'center' */
+        }
+
+        .about-me-content a.btn {
+            align-self: center; /* Asegura que el botón también esté centrado */
         }
 
         /* Contact Section */
