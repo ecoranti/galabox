@@ -221,7 +221,9 @@
             text-align: center;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            justify-content: space-between; /* Empuja el contenido al inicio y al final */
+            height: 100%; /* Permite que el flexbox funcione correctamente con grid */
+            align-items: center; /* Centra el contenido horizontalmente dentro de la tarjeta */
             border: 1px solid var(--border-light);
             transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         }
@@ -251,8 +253,23 @@
             font-size: 1rem;
             line-height: 1.6;
             color: var(--text-light);
-            text-align: center;
+            text-align: center; /* Centra los párrafos */
+            flex-grow: 1; /* Permite que el párrafo de descripción crezca y empuje el footer */
         }
+
+        .course-card .course-details {
+            margin-top: auto; /* Empuja este div al final de la tarjeta */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%; /* Asegura que ocupe el ancho completo para el centrado del botón */
+        }
+
+        .course-card .course-details p {
+            margin-bottom: 0; /* Elimina el margen inferior si ya está dentro de course-details */
+        }
+
 
         .course-card .btn {
             background: var(--accent-green-platzi);
@@ -260,7 +277,7 @@
             padding: 10px 20px;
             box-shadow: none;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            margin-top: 15px;
+            margin-top: 15px; /* Espacio entre los detalles del curso y el botón */
         }
 
         .course-card .btn:hover {
@@ -298,7 +315,7 @@
         .about-me-content p {
             margin-bottom: 20px;
             color: var(--text-light);
-            text-align: center; /* 🔄 Cambiar de 'justify' a 'center' */
+            text-align: center; /* Centra el texto en la sección "Sobre mí" */
         }
 
         .about-me-content a.btn {
@@ -408,7 +425,9 @@
         <div class="container">
             <h1>Gala Sandbox</h1>
             <button class="theme-toggle" aria-label="Cambiar tema">
-                <i class="fas fa-sun"></i> <i class="fas fa-moon"></i> </button>
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
     </header>
 
@@ -420,121 +439,85 @@
         </div>
     </section>
 
-        <section id="courses" class="courses-section">
-    <div class="container">
-        <h2>Nuestros Cursos</h2>
-        <div class="course-grid">
+    <section id="courses" class="courses-section">
+        <div class="container">
+            <h2>Nuestros Cursos</h2>
+            <div class="course-grid">
 
-        <div class="course-card">
-            <div class="icon">💻</div>
-            <div class="course-content">
-            <h3>Introducción al mundo tech</h3>
-            <p>Descubre el ecosistema tecnológico actual: qué es la industria tech, cómo funciona, qué roles existen y qué habilidades necesitas para insertarte con éxito. Ideal si estás empezando desde cero.</p>
-            </div>
-            <div class="course-footer">
-            <p><b>Duración:</b> 10 horas<br><b>Formato:</b> Grabado<br><b>Dificultad:</b> Básico</p>
-            <a href="#" class="btn">Inscribirme</a>
+                <div class="course-card">
+                    <div class="icon">💻</div>
+                    <h3>Introducción al mundo tech</h3>
+                    <p>Descubre los pilares del ecosistema tecnológico: qué es una API, cómo funcionan los sistemas y por qué entender la lógica digital te abre la puerta a cualquier rol IT.</p>
+                    <div class="course-details">
+                        <p><b>Duración:</b> 10 horas<br>
+                           <b>Formato:</b> Grabado<br>
+                           <b>Dificultad:</b> Básico</p>
+                        <a href="#" class="btn">Inscribirme</a>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="icon">🌐</div>
+                    <h3>Fundamentos de Redes</h3>
+                    <p>Aprende cómo fluye la información en Internet: modelos OSI/TCP-IP, direcciones IP, firewalls y cómo se construyen las redes que conectan al mundo.</p>
+                    <div class="course-details">
+                        <p><b>Duración:</b> 15 horas<br>
+                           <b>Formato:</b> Grabado<br>
+                           <b>Dificultad:</b> Básico-Intermedio</p>
+                        <a href="#" class="btn">Inscribirme</a>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="icon">🔒</div>
+                    <h3>Ciberseguridad desde cero</h3>
+                    <p>Inicia en el mundo de la ciberseguridad entendiendo las amenazas reales, cómo protegerte y qué herramientas se usan para asegurar redes y datos.</p>
+                    <div class="course-details">
+                        <p><b>Duración:</b> 12 horas<br>
+                           <b>Formato:</b> Grabado<br>
+                           <b>Dificultad:</b> Básico</p>
+                        <a href="#" class="btn">Inscribirme</a>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="icon">☁️</div>
+                    <h3>Introducción a la Nube</h3>
+                    <p>Descubre los servicios clave de AWS, Azure y GCP. Aprende los conceptos fundamentales de cloud computing que todo profesional moderno debe manejar.</p>
+                    <div class="course-details">
+                        <p><b>Duración:</b> 14 horas<br>
+                           <b>Formato:</b> Grabado<br>
+                           <b>Dificultad:</b> Intermedio</p>
+                        <a href="#" class="btn">Inscribirme</a>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="icon">💬</div>
+                    <h3>Habilidades Blandas para IT</h3>
+                    <p>Desarrollá habilidades de comunicación, liderazgo, trabajo en equipo y resolución de conflictos, claves para destacar en cualquier entorno tecnológico.</p>
+                    <div class="course-details">
+                        <p><b>Duración:</b> 8 horas<br>
+                           <b>Formato:</b> Grabado<br>
+                           <b>Dificultad:</b> Básico</p>
+                        <a href="#" class="btn">Inscribirme</a>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="icon">📜</div>
+                    <h3>Legal y Facturación para Freelancers</h3>
+                    <p>Aprende cómo cobrar a clientes del exterior, emitir facturas, evitar errores legales y proteger tu trabajo como profesional independiente.</p>
+                    <div class="course-details">
+                        <p><b>Duración:</b> 6 horas<br>
+                           <b>Formato:</b> Grabado<br>
+                           <b>Dificultad:</b> Básico</p>
+                        <a href="#" class="btn">Inscribirme</a>
+                    </div>
+                </div>
+
             </div>
         </div>
-
-        <div class="course-card">
-            <div class="icon">🌐</div>
-            <div class="course-content">
-            <h3>Fundamentos de Redes</h3>
-            <p>Aprendé sobre el modelo OSI, protocolos como TCP/IP, y cómo se conectan los dispositivos en una red. Esencial para quienes quieran trabajar en infraestructura, ciberseguridad o soporte técnico.</p>
-            </div>
-            <div class="course-footer">
-            <p><b>Duración:</b> 15 horas<br><b>Formato:</b> Grabado<br><b>Dificultad:</b> Básico-Intermedio</p>
-            <a href="#" class="btn">Inscribirme</a>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="icon">🔒</div>
-            <div class="course-content">
-            <h3>Ciberseguridad desde cero</h3>
-            <p>Conocé las amenazas más comunes, cómo se protege la información y qué roles existen dentro de la ciberseguridad. Es el punto de partida ideal para una carrera en seguridad IT.</p>
-            </div>
-            <div class="course-footer">
-            <p><b>Duración:</b> 12 horas<br><b>Formato:</b> Grabado<br><b>Dificultad:</b> Básico</p>
-            <a href="#" class="btn">Inscribirme</a>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="icon">🛡️</div>
-            <div class="course-content">
-            <h3>Administración de Netskope</h3>
-            <p>Aprendé a configurar políticas de acceso, gestionar usuarios y analizar eventos de seguridad utilizando Netskope, una plataforma líder en protección de entornos cloud.</p>
-            </div>
-            <div class="course-footer">
-            <p><b>Duración:</b> 20 horas<br><b>Formato:</b> En vivo/Grabado<br><b>Dificultad:</b> Intermedio</p>
-            <a href="#" class="btn">Inscribirme</a>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="icon">⚙️</div>
-            <div class="course-content">
-            <h3>Administración de Strata</h3>
-            <p>Aprendé a segmentar redes, aplicar reglas de seguridad y monitorear el tráfico con Palo Alto Strata. Ideal para profesionales que buscan avanzar en el campo de la ciberseguridad de red.</p>
-            </div>
-            <div class="course-footer">
-            <p><b>Duración:</b> 18 horas<br><b>Formato:</b> En vivo/Grabado<br><b>Dificultad:</b> Intermedio-Avanzado</p>
-            <a href="#" class="btn">Inscribirme</a>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="icon">☁️</div>
-            <div class="course-content">
-            <h3>Fundamentos de Cloud (AWS, Azure y GCP)</h3>
-            <p>Descubrí cómo funcionan los servicios cloud en las tres plataformas líderes: Amazon Web Services, Microsoft Azure y Google Cloud. Explorá conceptos como IaaS, PaaS, almacenamiento, redes y más.</p>
-            </div>
-            <div class="course-footer">
-            <p><b>Duración:</b> 16 horas<br><b>Formato:</b> Grabado<br><b>Dificultad:</b> Intermedio</p>
-            <a href="#" class="btn">Inscribirme</a>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="icon">🗣️</div>
-            <div class="course-content">
-            <h3>Soft Skills para IT</h3>
-            <p>Mejorá tus habilidades de comunicación, trabajo en equipo, liderazgo y gestión del tiempo. Estas competencias son clave para destacarte en entornos técnicos y multidisciplinarios.</p>
-            </div>
-            <div class="course-footer">
-            <p><b>Duración:</b> 8 horas<br><b>Formato:</b> Grabado<br><b>Dificultad:</b> Todos los niveles</p>
-            <a href="#" class="btn">Inscribirme</a>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="icon">📜</div>
-            <div class="course-content">
-            <h3>Aspectos Legales y Compliance</h3>
-            <p>Comprendé los aspectos clave de contratos, privacidad de datos (GDPR, Ley Argentina), términos de uso, licencias y buenas prácticas legales al trabajar en tecnología o con clientes.</p>
-            </div>
-            <div class="course-footer">
-            <p><b>Duración:</b> 10 horas<br><b>Formato:</b> Grabado<br><b>Dificultad:</b> Básico-Intermedio</p>
-            <a href="#" class="btn">Inscribirme</a>
-            </div>
-        </div>
-
-        <div class="course-card">
-            <div class="icon">💳</div>
-            <div class="course-content">
-            <h3>Facturación y Cobros en Tecnología</h3>
-            <p>Aprendé cómo emitir facturas, cobrar a clientes en Argentina y en el exterior, usar herramientas como Payoneer, Wise, MercadoPago y manejar impuestos de forma eficiente.</p>
-            </div>
-            <div class="course-footer">
-            <p><b>Duración:</b> 6 horas<br><b>Formato:</b> Grabado<br><b>Dificultad:</b> Todos los niveles</p>
-            <a href="#" class="btn">Inscribirme</a>
-            </div>
-        </div>
-
-        </div>
-    </div>
     </section>
 
     <section class="about-me-section">
