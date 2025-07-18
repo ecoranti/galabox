@@ -12,6 +12,8 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-P8BDKCJJ');</script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+
     <style>
         :root {
             /* Colores inspirados en Platzi para el modo claro */
@@ -411,11 +413,21 @@
             cursor: pointer;
             padding: 5px 10px;
             z-index: 1001; /* Ensure it's above other elements */
+            order: 2; /* To place it after theme toggle but before nav-links on mobile header */
         }
+        
+        .menu-and-theme {
+            display: flex;
+            gap: 15px; /* Space between theme toggle and menu toggle */
+            align-items: center;
+            order: 3; /* Push to the right on desktop */
+        }
+
 
         /* Initially hide the nav links on small screens */
         .nav-links {
             display: flex; /* Flex on desktop */
+            order: 2; /* To place it between title and toggles on desktop */
         }
 
         @media (max-width: 768px) {
@@ -431,8 +443,17 @@
             header .container {
                 justify-content: space-between; /* Space out elements */
                 width: 100%;
+                flex-wrap: nowrap; /* Prevent wrapping in header on mobile */
             }
             
+            header h1 {
+                order: 1; /* Keep title first */
+            }
+
+            .menu-and-theme {
+                order: 2; /* Keep toggles together on the right */
+            }
+
             header nav {
                 display: none; /* Hide the default nav */
             }
@@ -446,7 +467,7 @@
                 left: 0;
                 width: 100%;
                 height: calc(100vh - 45px); /* Take full height minus header */
-                justify-content: center;
+                justify-content: flex-start; /* Start from the top */
                 align-items: center;
                 gap: 30px; /* Spacing between links */
                 opacity: 0;
@@ -454,6 +475,7 @@
                 transform: translateX(100%); /* Slide in from right */
                 transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out, visibility 0.4s ease-in-out;
                 z-index: 999; /* Below header, above content */
+                padding-top: 40px; /* Add some padding at the top of the mobile menu */
             }
 
             .nav-links.active {
@@ -553,85 +575,118 @@
             </div>
             <nav class="nav-links">
                 <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#filosofia">Nuestra Filosofía</a></li>
-                    <li><a href="cursos.html">Cursos</a></li>
-                    <li><a href="sobre-mi.html">Sobre Mí</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="#inicio" data-section="inicio">Inicio</a></li>
+                    <li><a href="#filosofia" data-section="filosofia">Nuestra Filosofía</a></li>
+                    <li><a href="#cursos-destacados" data-section="cursos-destacados">Cursos</a></li>
+                    <li><a href="#sobre-mi" data-section="sobre-mi">Sobre Mí</a></li>
+                    <li><a href="#contacto" data-section="contacto">Contacto</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section id="inicio" class="hero">
-        <div class="container">
-            <h2>Formación IT para latinos: Conquista el Mercado Global con Confianza</h2>
-            <p>Deja atrás la incertidumbre. Te equipamos con las **habilidades técnicas, la visión estratégica y el acompañamiento** que las empresas tech más exigen hoy. ¡Tu futuro en IT empieza aquí! 🚀</p>
-            <a href="cursos.html" class="btn">Explora Nuestros Cursos</a>
-        </div>
-    </section>
+    <main id="spa-content">
 
-    <section id="filosofia" class="philosophy-section">
-        <div class="container">
-            <h2>Gala Sandbox: Más que Cursos, Tu Guía Hacia el Éxito</h2>
-            <div class="philosophy-content">
-                <p>En el camino de la tecnología, el esfuerzo individual es clave, pero **el verdadero impulso viene de la guía adecuada.** He tenido la fortuna de contar con líderes que me desafiaron, me afirmaron y me animaron a ir más allá. Hoy, mi misión es ser ese **impulso para ti.**</p>
-                <p>No solo te enseñamos lo técnico; te preparamos para los **desafíos reales del mercado global.** Te acompañamos para que desarrolles no solo habilidades duras, sino también la **confianza y la mentalidad estratégica** para destacar. Porque tu potencial es ilimitado, y con el mentor correcto, puedes alcanzarlo todo.</p>
+        <section id="inicio" class="hero section-content active">
+            <div class="container">
+                <h2 class="animate-text">Formación IT para latinos: Conquista el Mercado Global con Confianza</h2>
+                <p class="animate-text">Deja atrás la incertidumbre. Te equipamos con las **habilidades técnicas, la visión estratégica y el acompañamiento** que las empresas tech más exigen hoy. ¡Tu futuro en IT empieza aquí! 🚀</p>
+                <a href="#cursos-destacados" class="btn animate-btn" data-section="cursos-destacados">Explora Nuestros Cursos</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="cursos" class="courses-section">
-        <div class="container">
-            <h2>Nuestros Cursos Más Populares</h2>
-            <div class="course-grid">
-
-                <div class="course-card">
-                    <div class="icon">💻</div>
-                    <h3>Introducción al mundo tech</h3>
-                    <p>Descubre los pilares del ecosistema tecnológico y cómo posicionarte para el éxito.</p>
-                    <div class="course-details">
-                        <p><b>Duración:</b> 10 horas<br>
-                           <b>Dificultad:</b> Básico</p>
-                        <a href="https://hotmart.com/tu-curso-intro" target="_blank" class="btn">Saber Más</a>
-                    </div>
+        <section id="filosofia" class="philosophy-section section-content">
+            <div class="container">
+                <h2 class="animate-text">Gala Sandbox: Más que Cursos, Tu Guía Hacia el Éxito</h2>
+                <div class="philosophy-content animate-group">
+                    <p>En el camino de la tecnología, el esfuerzo individual es clave, pero **el verdadero impulso viene de la guía adecuada.** He tenido la fortuna de contar con líderes que me desafiaron, me afirmaron y me animaron a ir más allá. Hoy, mi misión es ser ese **impulso para ti.**</p>
+                    <p>No solo te enseñamos lo técnico; te preparamos para los **desafíos reales del mercado global.** Te acompañamos para que desarrolles no solo habilidades duras, sino también la **confianza y la mentalidad estratégica** para destacar. Porque tu potencial es ilimitado, y con el mentor correcto, puedes alcanzarlo todo.</p>
                 </div>
-
-                <div class="course-card">
-                    <div class="icon">🌐</div>
-                    <h3>Fundamentos de Redes</h3>
-                    <p>Domina los modelos OSI y TCP/IP, y los protocolos esenciales que sustentan toda la infraestructura.</p>
-                    <div class="course-details">
-                        <p><b>Duración:</b> 15 horas<br>
-                           <b>Dificultad:</b> Básico-Intermedio</p>
-                        <a href="https://hotmart.com/tu-curso-redes" target="_blank" class="btn">Saber Más</a>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <div class="icon">🔒</div>
-                    <h3>Ciberseguridad desde cero</h3>
-                    <p>Inicia tu camino en la ciberseguridad con los principios básicos y amenazas comunes.</p>
-                    <div class="course-details">
-                        <p><b>Duración:</b> 12 horas<br>
-                           <b>Dificultad:</b> Básico</p>
-                        <a href="https://hotmart.com/tu-curso-ciberseguridad" target="_blank" class="btn">Saber Más</a>
-                    </div>
-                </div>
-
             </div>
-            <a href="cursos.html" class="btn">Ver Catálogo Completo de Cursos</a>
-        </div>
-    </section>
+        </section>
 
-    <section class="cta-community-section">
-        <div class="container">
-            <h2>¿Listo para dar el Salto? Únete a Nuestra Comunidad IT</h2>
-            <p>Si buscas una guía real, respuestas claras y el apoyo que necesitas para despegar en tecnología, este es tu lugar. Conéctate con Elías y una red de profesionales, comparte dudas y encuentra la inspiración para tu transformación.</p>
-            <a href="https://t.me/tu_grupo_telegram" target="_blank" class="btn">¡Únete a Telegram Ahora!</a>
-            <p style="margin-top: 25px; font-size: 1rem;">O <a href="https://youtube.com/tu_canal_youtube" target="_blank" style="color: var(--accent-blue-platzi); text-decoration: none; font-weight: 600;">visita mi Canal de YouTube</a> para contenido gratuito de valor.</p>
-        </div>
-    </section>
+        <section id="cursos-destacados" class="courses-section section-content">
+            <div class="container">
+                <h2 class="animate-text">Nuestros Cursos Más Populares</h2>
+                <div class="course-grid animate-group">
+
+                    <div class="course-card">
+                        <div class="icon">💻</div>
+                        <h3>Introducción al mundo tech</h3>
+                        <p>Descubre los pilares del ecosistema tecnológico y cómo posicionarte para el éxito.</p>
+                        <div class="course-details">
+                            <p><b>Duración:</b> 10 horas<br>
+                               <b>Dificultad:</b> Básico</p>
+                            <a href="https://hotmart.com/tu-curso-intro" target="_blank" class="btn">Saber Más</a>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="icon">🌐</div>
+                        <h3>Fundamentos de Redes</h3>
+                        <p>Domina los modelos OSI y TCP/IP, y los protocolos esenciales que sustentan toda la infraestructura.</p>
+                        <div class="course-details">
+                            <p><b>Duración:</b> 15 horas<br>
+                               <b>Dificultad:</b> Básico-Intermedio</p>
+                            <a href="https://hotmart.com/tu-curso-redes" target="_blank" class="btn">Saber Más</a>
+                        </div>
+                    </div>
+
+                    <div class="course-card">
+                        <div class="icon">🔒</div>
+                        <h3>Ciberseguridad desde cero</h3>
+                        <p>Inicia tu camino en la ciberseguridad con los principios básicos y amenazas comunes.</p>
+                        <div class="course-details">
+                            <p><b>Duración:</b> 12 horas<br>
+                               <b>Dificultad:</b> Básico</p>
+                            <a href="https://hotmart.com/tu-curso-ciberseguridad" target="_blank" class="btn">Saber Más</a>
+                        </div>
+                    </div>
+
+                </div>
+                <a href="cursos.html" class="btn animate-btn">Ver Catálogo Completo de Cursos</a>
+            </div>
+        </section>
+
+        <section id="sobre-mi" class="about-me-section section-content">
+            <div class="container">
+                <h2 class="animate-text">Mi Historia: Elías Coranti y la Visión de Gala Sandbox</h2>
+                <img src="https://via.placeholder.com/300x300?text=Tu+Foto+Aqui" alt="Foto de Elías Coranti" class="animate-img">
+                
+                <div class="about-me-content animate-group">
+                    <p>¡Hola! Soy Elías Coranti, el fundador de Gala Sandbox. Mi viaje en el mundo de la tecnología ha sido una montaña rusa de aprendizajes, desafíos y, sobre todo, <span class="highlight">oportunidades inesperadas.</span></p>
+
+                    <p>Desde mis inicios, siempre creí firmemente en el poder del esfuerzo individual y la constancia. Sin embargo, lo que realmente marcó la diferencia en mi trayectoria fue la presencia de <span class="highlight">líderes y mentores excepcionales.</span> Personas que no solo me enseñaron habilidades técnicas, sino que también me brindaron su apoyo incondicional, me desafiaron a pensar en grande, y me dieron la confianza para seguir adelante, incluso cuando el camino parecía incierto.</p>
+
+                    <p>Recuerdo con cariño cómo su guía me impulsó, sus palabras me afirmaron en momentos de duda y su ánimo me dio la energía para avanzar. Esas experiencias fueron transformadoras, y me di cuenta de la importancia de tener a alguien que cree en ti y te empuja hacia tu mejor versión.</p>
+
+                    <p>Fue esa convicción profunda, sumada a mi pasión por la tecnología y la enseñanza, lo que me llevó a crear <span class="highlight">Gala Sandbox.</span> Mi objetivo no es solo impartir conocimientos técnicos; es replicar esa invaluable experiencia de mentoría. Quiero ser ese líder y esa guía para ti, impulsándote a desarrollar no solo las habilidades más demandadas en IT, sino también la mentalidad estratégica, la confianza y la resiliencia que te permitirán conquistar el mercado global.</p>
+
+                    <p>Creo firmemente que tu potencial es ilimitado. En Gala Sandbox, te acompañaremos en cada paso, brindándote las herramientas, el conocimiento y el apoyo necesario para que superes tus propios límites y alcances tus metas más ambiciosas. <span class="highlight">Tu éxito es mi éxito, y juntos vamos a construir un futuro brillante en la tecnología.</span></p>
+
+                    <p>Gracias por estar aquí y por confiar en Gala Sandbox. Estoy emocionado de ser parte de tu transformación.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="cta-community-section section-content">
+            <div class="container">
+                <h2 class="animate-text">¿Listo para dar el Salto? ¡Conversemos!</h2>
+                <p class="animate-text">Si buscas una guía real, respuestas claras y el apoyo que necesitas para despegar en tecnología, este es tu lugar. Conéctate con Elías y una red de profesionales, comparte dudas y encuentra la inspiración para tu transformación.</p>
+                
+                <div class="contact-methods animate-group">
+                    <p style="margin-bottom: 20px;">Envíanos un mensaje directo o encuéntranos en redes:</p>
+                    <a href="mailto:tuemail@ejemplo.com" class="btn animate-btn" style="margin-bottom: 20px;">Enviar un Email</a>
+                    <div class="social-icons">
+                        <a href="https://t.me/tu_grupo_telegram" target="_blank" aria-label="Únete a nuestro grupo de Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="https://youtube.com/tu_canal_youtube" target="_blank" aria-label="Visita nuestro canal de YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.linkedin.com/in/tu_perfil_linkedin" target="_blank" aria-label="Conecta en LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <footer>
         <div class="container">
@@ -665,15 +720,130 @@
 
             menuToggle.addEventListener('click', () => {
                 navLinks.classList.toggle('active');
-                // Opcional: Cerrar el menú si se hace clic en un enlace
-                navLinks.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        if (navLinks.classList.contains('active')) {
-                            navLinks.classList.remove('active');
-                        }
-                    });
+            });
+
+            // Lógica SPA y Animaciones con Anime.js
+            const sections = document.querySelectorAll('.section-content');
+            const navAnchors = document.querySelectorAll('.nav-links a[data-section]');
+            const mainContent = document.getElementById('spa-content');
+            const headerOffset = 45; // Altura del header fijo
+
+            // Función para animar la entrada de elementos
+            function animateSectionContent(sectionId) {
+                // Selecciona solo los elementos dentro de la sección activa
+                const currentSection = document.getElementById(sectionId);
+                if (!currentSection) return;
+
+                const animatedTexts = currentSection.querySelectorAll('.animate-text');
+                const animatedButtons = currentSection.querySelectorAll('.animate-btn');
+                const animatedImages = currentSection.querySelectorAll('.animate-img');
+                const animatedGroups = currentSection.querySelectorAll('.animate-group > *'); // Anima los hijos del grupo
+
+                // Animación para títulos y párrafos
+                anime({
+                    targets: animatedTexts,
+                    translateY: [50, 0], // Empieza 50px abajo y sube
+                    opacity: [0, 1],
+                    duration: 800,
+                    easing: 'easeOutQuad',
+                    delay: anime.stagger(100) // Pequeño retraso entre cada elemento de texto
+                });
+
+                // Animación para botones
+                anime({
+                    targets: animatedButtons,
+                    scale: [0.8, 1], // Empieza un poco más pequeño
+                    opacity: [0, 1],
+                    duration: 900,
+                    easing: 'easeOutElastic(1, .8)', // Efecto elástico
+                    delay: 200 // Después de los textos
+                });
+
+                // Animación para imágenes
+                anime({
+                    targets: animatedImages,
+                    scale: [0.5, 1], // Empieza más pequeño
+                    rotate: [-15, 0], // Ligera rotación
+                    opacity: [0, 1],
+                    duration: 1000,
+                    easing: 'easeOutElastic(1, .7)',
+                    delay: 300 // Después de los botones
+                });
+
+                // Animación para grupos de elementos (ej. parrafos de filosofía o tarjetas de curso)
+                anime({
+                    targets: animatedGroups,
+                    translateY: [30, 0],
+                    opacity: [0, 1],
+                    duration: 700,
+                    easing: 'easeOutQuad',
+                    delay: anime.stagger(80, {start: 400}) // Retraso entre elementos del grupo
+                });
+            }
+
+            // Función para actualizar la visibilidad de las secciones y aplicar animaciones
+            function showSection(targetId) {
+                sections.forEach(section => {
+                    if (section.id === targetId) {
+                        section.style.display = 'block'; // Muestra la sección
+                        animateSectionContent(targetId); // Lanza animaciones
+                    } else {
+                        section.style.display = 'none'; // Oculta las demás
+                    }
+                });
+            }
+
+            // Manejar la navegación por clics
+            navAnchors.forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault(); // Evitar el comportamiento de anclaje predeterminado
+
+                    // Cerrar menú móvil si está abierto
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+
+                    const targetId = this.getAttribute('data-section');
+                    const targetSection = document.getElementById(targetId);
+
+                    if (targetSection) {
+                        // Ocultar todas las secciones excepto la activa para una verdadera experiencia SPA de "cambio de página"
+                        // Opcional: si prefieres scroll suave, elimina showSection y usa window.scrollTo
+                        
+                        // Si quieres una experiencia SPA con "cambio de página"
+                        showSection(targetId); 
+                        
+                        // Si quieres solo scroll suave (como estaba antes pero con animaciones)
+                        // const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                        // anime({
+                        //     targets: 'html, body',
+                        //     scrollTop: targetPosition,
+                        //     duration: 800,
+                        //     easing: 'easeInOutQuad'
+                        // });
+
+                        // Actualizar la URL sin recargar la página (para poder usar el botón de atrás/adelante del navegador)
+                        history.pushState(null, '', `#${targetId}`);
+                    } else if (this.getAttribute('href').endsWith('.html')) {
+                        // Para enlaces que realmente van a otra página (como "Ver Catálogo Completo de Cursos" en el hero)
+                        window.location.href = this.getAttribute('href');
+                    }
                 });
             });
+
+            // Manejar la carga inicial de la página o al usar el botón de atrás/adelante del navegador
+            function handleInitialLoadAndPopstate() {
+                const initialHash = window.location.hash.substring(1); // Eliminar el '#'
+                if (initialHash && document.getElementById(initialHash)) {
+                    showSection(initialHash);
+                } else {
+                    showSection('inicio'); // Mostrar la sección de inicio por defecto
+                    history.replaceState(null, '', '#inicio'); // Limpiar el hash si no hay uno válido
+                }
+            }
+
+            window.addEventListener('popstate', handleInitialLoadAndPopstate);
+            handleInitialLoadAndPopstate(); // Ejecutar al cargar la página
         });
     </script>
 </body>
