@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { FaTelegramPlane, FaWhatsapp, FaLinkedinIn, FaYoutube, FaTelegram } from 'react-icons/fa';
+import { FaTelegramPlane, FaWhatsapp, FaLinkedinIn, FaYoutube, FaTelegram, FaEnvelope } from 'react-icons/fa';
 
 const ContactSection: React.FC = () => {
   return (
@@ -45,10 +45,34 @@ const ContactSection: React.FC = () => {
               <FaLinkedinIn />
             </a>
           </div>
-          <p className="mt-4 text-sm">
-            Para consultas directas, puedes escribir a:{" "}
-            <a href="mailto:eliascoranti3@gmail.com" className="text-blue-400 hover:underline">
-              eliascoranti3@gmail.com
+          <p className="mt-4 text-sm flex justify-center items-center gap-4 text-lg">
+            <a
+              href="mailto:eliascoranti3@gmail.com"
+              className="text-blue-400 hover:text-blue-300"
+              title="Enviar Email"
+              aria-label="Email"
+            >
+              <FaEnvelope />
+            </a>
+            <a
+              href="https://wa.me/5493584023966"
+              className="text-green-400 hover:text-green-300"
+              title="Enviar WhatsApp"
+              aria-label="WhatsApp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaWhatsapp />
+            </a>
+            <a
+              href="https://t.me/eliascoranti"
+              className="text-sky-400 hover:text-sky-300"
+              title="Enviar mensaje por Telegram"
+              aria-label="Telegram Directo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaTelegram />
             </a>
           </p>
         </div>

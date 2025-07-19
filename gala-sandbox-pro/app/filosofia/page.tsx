@@ -10,17 +10,15 @@ export const metadata = {
 
 const FilosofiaPage: React.FC = () => {
   return (
-    <>
-      {/* Hero section specific to the Philosophy page */}
+    <main className="flex flex-col min-h-[calc(100vh-64px)] pb-32">
       <HeroSection
         title="Nuestra Filosofía"
         description="En DestinoTech, creemos en una guía personalizada para tu éxito en el mundo IT."
         ctaText="Explora Nuestros Cursos"
         ctaLink="/cursos"
       />
-      {/* Main content of the philosophy section */}
       <PhilosophySection />
-    </>
+    </main>
   );
 };
 

@@ -69,5 +69,24 @@ body {
 /* Font Awesome for icons */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
+
 /* Google Fonts - Inter */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-flow-horizontal {
+  background: linear-gradient(270deg, var(--gradient-start-platzi), var(--gradient-end-platzi), var(--gradient-start-platzi));
+  background-size: 300% 100%;
+  animation: gradientFlow 12s ease-in-out infinite;
+}

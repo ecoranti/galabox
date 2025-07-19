@@ -19,11 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className="flex flex-col min-h-screen transition-colors duration-400">
+      <body className="flex flex-col min-h-screen transition-colors duration-400 bg-gradient-to-r from-gradient-start-platzi to-gradient-end-platzi">
         <GoogleTagManager />
         <ThemeProvider>
           <Header />
-          <main className="flex-1 bg-gradient-to-r from-gradient-start-platzi to-gradient-end-platzi">
+          <main className="flex-grow">
             {children}
           </main>
           <Footer />
