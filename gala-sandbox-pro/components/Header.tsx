@@ -1,94 +1,83 @@
-// components/Header.tsx
 'use client';
 
+import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { useState } from 'react';
-import { useTheme } from './ThemeProvider';
+import ThemeToggle from './ThemeToggle';
+import NavLink from './NavLink'; // Import the NavLink component
+import Image from 'next/image'; // Import Image for optimized images
 
-export default function Header() {
-  const { theme, setTheme } = useTheme();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
 
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
+  // Function to close the menu when a link is clicked (useful for mobile)
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 py-4 px-6 md:px-8
-                       bg-backgroundLight dark:bg-primaryDarkBlue
-                       shadow-md dark:shadow-lg transition-colors duration-300 ease-in-out">
-      <nav className="container mx-auto flex justify-between items-center">
-        {/* Logo */}
-        <Link href="/" className="flex items-center" onClick={closeMobileMenu}>
+    <header className="bg-primary-dark-blue text-white py-2 fixed top-0 left-0 w-full z-50 shadow-md h-[45px] flex items-center">
+      <div className="container flex justify-between items-center w-full">
+        {/* Logo/Site Title */}
+        <Link href="/" className="no-underline text-white text-xl font-bold flex items-center">
+          {/* Using Next.js Image component for optimized image loading */}
           <Image
-            src={theme === 'dark' ? '/camino-tech-logo-dark.svg' : '/camino-tech-logo.svg'} // ¡ACTUALIZADO: Rutas de imagen para CaminoTech!
-            alt="CaminoTech Logo" // ¡ACTUALIZADO: Texto alternativo para CaminoTech!
-            width={150} // Ajusta el tamaño según tu logo
-            height={40} // Ajusta el tamaño según tu logo
-            priority // Carga prioritaria para el logo
+            src="/camino-tech-logo.svg" // Path to your logo in the public folder
+            alt="DestinoTech Logo"
+            width={30} // Set appropriate width
+            height={30} // Set appropriate height
+            className="mr-2"
           />
+          DestinoTech
         </Link>
 
-        {/* Iconos a la derecha: Theme Toggle y Mobile Menu Toggle */}
-        <div className="flex items-center space-x-4 md:space-x-6"> {/* Espaciado entre iconos */}
-          {/* Theme Toggle */}
+        {/* Mobile Menu Toggle and Theme Toggle */}
+        <div className="flex items-center gap-4 md:hidden">
+          <ThemeToggle />
           <button
-            className="text-textLight dark:text-white p-2 rounded-md cursor-pointer text-xl
-                       transition-colors duration-300 hover:text-primaryBlue dark:hover:text-secondaryGreen
-                       focus:outline-none"
-            aria-label="Cambiar tema"
-            onClick={toggleTheme}
+            onClick={toggleMenu}
+            className="bg-none border-none text-white text-2xl cursor-pointer p-1"
+            aria-label="Abrir menú"
           >
-            {theme === 'light' ? (
-              <i className="fas fa-moon"></i> // Ícono de luna para cambiar a oscuro
-            ) : (
-              <i className="fas fa-sun"></i> // Ícono de sol para cambiar a claro
-            )}
-          </button>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="menu-toggle md:hidden text-textLight dark:text-white text-2xl cursor-pointer p-1
-                       focus:outline-none"
-            aria-label="Abrir/Cerrar menú"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <i className="fas fa-times"></i> // Icono de cerrar (X)
-            ) : (
-              <i className="fas fa-bars"></i> // Icono de hamburguesa
-            )}
+            <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'}`}></i> {/* Toggle icon */}
           </button>
         </div>
 
-        {/* Navigation Links */}
-        {/* La navegación en móvil será una superposición */}
-        <nav className={`
-          fixed inset-0 z-40
-          bg-backgroundLight dark:bg-primaryDarkBlue
-          flex flex-col items-center justify-center
-          md:relative md:inset-auto md:bg-transparent md:dark:bg-transparent
-          md:flex md:flex-row md:justify-end md:items-center
-          transition-transform duration-300 ease-in-out
-          ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}
-          md:translate-x-0
-          overflow-y-auto md:overflow-visible // Para que el scroll funcione en móvil si hay muchos links
-        `}>
-          <ul className="flex flex-col md:flex-row gap-6 md:gap-6
-                         list-none p-0 m-0 text-2xl md:text-base">
-            <li><Link href="#inicio" className="nav-link" onClick={closeMobileMenu}>Inicio</Link></li>
-            <li><Link href="#filosofia" className="nav-link" onClick={closeMobileMenu}>Nuestra Filosofía</Link></li>
-            <li><Link href="#cursos-destacados" className="nav-link" onClick={closeMobileMenu}>Cursos</Link></li>
-            <li><Link href="#sobre-mi" className="nav-link" onClick={closeMobileMenu}>Sobre Mí</Link></li>
-            <li><Link href="#contacto" className="nav-link" onClick={closeMobileMenu}>Contacto</Link></li>
+        {/* Navigation Links (Desktop) */}
+        <nav className="hidden md:flex">
+          <ul className="flex list-none m-0 p-0 gap-6">
+            <li><NavLink href="/" onClick={closeMenu}>Inicio</NavLink></li>
+            <li><NavLink href="/filosofia" onClick={closeMenu}>Nuestra Filosofía</NavLink></li>
+            <li><NavLink href="/cursos" onClick={closeMenu}>Cursos</NavLink></li>
+            <li><NavLink href="/sobre-mi" onClick={closeMenu}>Sobre Mí</NavLink></li>
+            <li><NavLink href="/contacto" onClick={closeMenu}>Contacto</NavLink></li>
           </ul>
         </nav>
+
+        {/* Theme Toggle (Desktop) */}
+        <div className="hidden md:block">
+          <ThemeToggle />
+        </div>
+      </div>
+
+      {/* Mobile Navigation Menu (visible when isMenuOpen is true) */}
+      <nav
+        className={`fixed top-[45px] left-0 w-full h-[calc(100vh-45px)] bg-primary-dark-blue flex flex-col items-center justify-start pt-10 transition-transform duration-400 ease-in-out z-40 md:hidden
+          ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+      >
+        <ul className="flex flex-col list-none m-0 p-0 gap-8 text-center w-full">
+          <li><NavLink href="/" onClick={closeMenu}>Inicio</NavLink></li>
+          <li><NavLink href="/filosofia" onClick={closeMenu}>Nuestra Filosofía</NavLink></li>
+          <li><NavLink href="/cursos" onClick={closeMenu}>Cursos</NavLink></li>
+          <li><NavLink href="/sobre-mi" onClick={closeMenu}>Sobre Mí</NavLink></li>
+          <li><NavLink href="/contacto" onClick={closeMenu}>Contacto</NavLink></li>
+        </ul>
       </nav>
     </header>
   );
-}
+};
+
+export default Header;

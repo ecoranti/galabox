@@ -1,37 +1,32 @@
-// app/layout.tsx
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import Header from '../components/Header';
-import { ThemeProvider } from '../components/ThemeProvider';
-
-const inter = Inter({ subsets: ['latin'] });
+import './globals.css'; // Import global styles
+import '@fortawesome/fontawesome-free/css/all.min.css'; // Importa Font Awesome
+import { FaTwitter, FaInstagram, FaGithub } from 'react-icons/fa';
+import { ThemeProvider } from '@/components/ThemeProvider'; // Import ThemeProvider
+import Header from '@/components/Header'; // Import Header
+import Footer from '@/components/Footer'; // Import Footer
 
 export const metadata: Metadata = {
-  title: 'CaminoTech - Tu Guía en el Mundo IT',
-  description: 'Formación IT para latinos: Conquista el Mercado Global con Confianza',
+  title: 'DestinoTech - Tu Guía en el Mundo IT',
+  description: 'Formación IT para latinos: Conquista el Mercado Global con Confianza.',
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="es" className={inter.className}>
-      {/* El ThemeProvider envolverá el body y manejará la clase 'dark' */}
-      <ThemeProvider>
-        {/* Las clases de color base para el body ahora se manejan en globals.css */}
-        <body className="relative min-h-screen">
-          {/* Google Tag Manager (noscript) */}
-          <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P8BDKCJJ"
-          height="0" width="0" style={{display:'none',visibility:'hidden'}}></iframe></noscript>
-          {/* End Google Tag Manager (noscript) */}
-
+    <html lang="es">
+      <body className="flex flex-col min-h-screen transition-colors duration-400">
+        <ThemeProvider>
           <Header />
-          {children}
-        </body>
-      </ThemeProvider>
+          <main className="flex-1 bg-gradient-to-r from-gradient-start-platzi to-gradient-end-platzi">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

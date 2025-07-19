@@ -2,103 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ¡IMPORTANTE! Importa el CSS de Font Awesome desde node_modules */
-@import '@fortawesome/fontawesome-svg-core/styles.css';
-
-/* Definición de variables CSS para los colores */
+/* Define CSS variables for themes, which Tailwind can then use via its config */
+/* Light Theme */
 :root {
-  /* Colores para tema claro */
-  --color-primary-blue: #0A224D;
-  --color-secondary-green: #4CAF50;
-  --color-accent-blue: #2196F3;
-  --color-hover-green: #388E3C;
+  --background-light: #f0f2f5; /* Fondo general más suave */
+  --text-light: #2c3e50; /* Texto oscuro */
+  --card-background-light: #ffffff;
+  --border-light: #e0e6ed;
+  --primary-dark-blue: #1c2b3e; /* Azul oscuro para header/footer y algunos títulos */
 
-  --color-background-light: #F8F8F8;
-  --color-text-light: #333333;
-  --color-card-background-light: #FFFFFF;
-  --color-border-light: #EEEEEE;
+  /* Colores vibrantes y gradientes */
+  --gradient-start-platzi: #2c3e50; /* Azul oscuro */
+  --gradient-end-platzi: #4CAF50; /* Verde brillante */
+  --accent-green-platzi: #4CAF50; /* Verde principal para CTA */
+  --accent-blue-platzi: #2196F3; /* Azul para algunos acentos */
+  --hover-platzi: #388E3C; /* Verde más oscuro al hover */
 
-  --color-gradient-start-light: #0A224D;
-  --color-gradient-end-light: #4CAF50;
-
-  --color-heading-color-light: var(--color-text-light); /* Títulos claros son texto oscuro */
-  --color-courses-section-bg-light: #e8ecef;
+  --footer-text-light: #a0a0a0; /* Gris claro para footer */
+  --heading-color: var(--primary-dark-blue); /* Color de títulos en tema claro */
+  --courses-section-bg: #e8ecef; /* Un gris muy claro para diferenciarla del fondo principal */
 }
 
-/* Colores para tema oscuro */
-.dark {
-  --color-primary-dark-blue: #1a1a2e;
-  --color-secondary-dark-blue: #2c2c4d;
-  --color-background-dark: #121212;
-  --color-text-dark: #e0e0e0;
-  --color-border-dark: #444444;
-  --color-hover-dark: #4da6ff; /* Un azul claro para hover en dark mode */
+/* Dark Theme */
+[data-theme="dark"] {
+  --background-light: #121212;
+  --text-light: #e0e0e0;
+  --card-background-light: #2a2a2a;
+  --border-light: #333;
+  --primary-dark-blue: #0f0f0f;
 
-  --color-gradient-start-dark: #1a1a2e;
-  --color-gradient-end-dark: #388E3C;
+  --gradient-start-platzi: #0f0f0f;
+  --gradient-end-platzi: #388E3C;
+  --accent-green-platzi: #66BB6A;
+  --accent-blue-platzi: #64B5F6;
+  --hover-platzi: #5cb85c;
 
-  --color-heading-color-dark: var(--color-text-dark); /* Títulos oscuros son texto claro */
-  --color-card-background-dark: #2a2a2a;
-  --color-courses-section-bg-dark: #1a1a1a;
+  --footer-text-light: #777;
+  --heading-color: #e0e0e0;
+  --courses-section-bg: #1a1a1a; /* Un gris oscuro para la sección de cursos */
 }
 
-/* Estilos para el body */
+html {
+  height: 100%; /* Asegura que html ocupe el 100% de la altura del viewport */
+}
+
 body {
   font-family: 'Inter', sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth; /* Para el scroll suave */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Aplica los colores de fondo y texto base del tema claro */
-  background-color: var(--color-background-light);
-  color: var(--color-text-light);
-  transition: background-color 0.4s ease, color 0.4s ease;
+  @apply bg-background-light text-text-light pt-[45px]; /* Aplica clases de Tailwind, padding-top para el header fijo */
+  height: 100%; /* Asegura que body ocupe el 100% de la altura de html */
+  display: flex; /* Habilita flexbox */
+  flex-direction: column; /* Apila los hijos verticalmente */
 }
 
-/* Sobrescribe los colores del body en modo oscuro */
-.dark body {
-  background-color: var(--color-background-dark);
-  color: var(--color-text-dark);
+/* Base styles for container */
+.container {
+  @apply max-w-screen-xl mx-auto px-4;
 }
 
-/* Estilos para el botón primario */
-.btn-primary {
-  @apply inline-block py-3 px-8 rounded-full text-lg font-semibold
-         transition-all duration-300 ease-in-out;
-  /* Colores de fondo y texto definidos con var() para cambiar con el tema */
-  background: linear-gradient(to right, var(--color-accent-green), var(--color-accent-blue));
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-  border: none;
+.hero-full-height {
+  min-height: 100vh;          /* Ocupar toda la altura del viewport */
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: red !important;
 }
 
-.btn-primary:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-}
+/* Font Awesome for icons */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
-/* Estilos para los enlaces de navegación */
-.nav-link {
-  @apply font-medium transition-colors duration-300 ease-in-out;
-  color: var(--color-text-light); /* Color en tema claro */
-}
-
-/* Estilos para enlaces de navegación en modo oscuro */
-.dark .nav-link {
-  color: var(--color-text-dark); /* Color en tema oscuro */
-}
-
-.nav-link:hover {
-  color: var(--color-secondary-green); /* Hover en tema claro */
-}
-
-.dark .nav-link:hover {
-  color: var(--color-hover-dark); /* Hover en tema oscuro */
-}
-
-/* Puedes añadir más estilos personalizados aquí */
+/* Google Fonts - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
