@@ -1,37 +1,56 @@
-'use client'; // Este componente necesita ser un Client Component porque maneja estado y elementos interactivos.
+'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import { FaTelegramPlane } from 'react-icons/fa';
+import { FaTelegramPlane, FaWhatsapp, FaLinkedinIn, FaYoutube, FaTelegram } from 'react-icons/fa';
 
 const ContactSection: React.FC = () => {
-
   return (
-    <section className="contact-content-section py-16 bg-background-light dark:bg-background-dark text-text-light text-center transition-colors duration-400">
-      <div className="container mx-auto px-4 max-w-3xl">
-        <div className="w-full mt-8 flex flex-col items-center text-center relative">
-          <h2 className="text-4xl font-bold text-heading-color transition-colors duration-400 mb-4">
-            Únete a nuestra comunidad
-          </h2>
-          <div className="flex justify-center items-center gap-6 mt-4">
-            <a
-              href="https://t.me/JovenesIT"
-              target="_blank"
-              aria-label="Únete a nuestra comunidad"
-              className="group inline-flex items-center justify-center w-14 h-14 rounded-full transition-all duration-500 hover:drop-shadow-[0_0_12px_rgba(0,170,255,0.5)]"
+    <section className="bg-background-light dark:bg-background-dark text-text-light transition-colors duration-300 pt-16">
+
+      <div className="container mx-auto px-4 max-w-2xl py-16">
+        <h3 className="text-2xl font-semibold mb-6 text-center">Envíanos un Mensaje</h3>
+        <form className="space-y-4">
+          <div>
+            <label className="block mb-1 font-medium">Nombre Completo:</label>
+            <input type="text" className="w-full px-4 py-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-green-500" />
+          </div>
+          <div>
+            <label className="block mb-1 font-medium">Tu Email:</label>
+            <input type="email" className="w-full px-4 py-2 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-green-500" />
+          </div>
+          <div>
+            <label className="block mb-1 font-medium">Tu Mensaje:</label>
+            <textarea className="w-full px-4 py-2 h-32 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-green-500" />
+          </div>
+          <div className="text-center pt-4">
+            <button
+              type="submit"
+              className="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full shadow-md transition-transform transform hover:scale-105"
             >
-              <FaTelegramPlane className="text-blue-400 dark:text-white text-4xl transition-colors duration-500 ease-in-out group-hover:text-blue-600 dark:group-hover:text-blue-400" />
+              Enviar Mensaje
+            </button>
+          </div>
+        </form>
+
+        <div className="mt-12 text-center">
+          <h4 className="font-semibold text-lg mb-2">También puedes encontrarme en:</h4>
+          <div className="flex justify-center gap-4 text-2xl">
+            <a href="https://t.me/JovenesIT" target="_blank" aria-label="Telegram" className="hover:text-blue-400">
+              <FaTelegramPlane />
             </a>
-            <a
-              href="https://wa.me/5493584023966"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Contactar por WhatsApp"
-              className="inline-flex items-center justify-center w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-[0_0_25px_rgba(0,255,0,0.6)] transition-all duration-300"
-            >
-              <i className="fab fa-whatsapp text-2xl"></i>
+            <a href="#" target="_blank" aria-label="YouTube" className="hover:text-red-500">
+              <FaYoutube />
+            </a>
+            <a href="#" target="_blank" aria-label="LinkedIn" className="hover:text-blue-600">
+              <FaLinkedinIn />
             </a>
           </div>
+          <p className="mt-4 text-sm">
+            Para consultas directas, puedes escribir a:{" "}
+            <a href="mailto:eliascoranti3@gmail.com" className="text-blue-400 hover:underline">
+              eliascoranti3@gmail.com
+            </a>
+          </p>
         </div>
       </div>
     </section>
