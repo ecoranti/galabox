@@ -41,7 +41,7 @@ const AboutMeSection: React.FC<AboutMeSectionProps> = ({ showCta = false }) => {
             <FaTelegramPlane />
           </a>
           <a
-            href="https://www.youtube.com/@JovenesIT"
+            href="https://www.youtube.com"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="YouTube"
