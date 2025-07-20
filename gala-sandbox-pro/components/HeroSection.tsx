@@ -10,7 +10,7 @@ interface HeroSectionProps {
   fullHeight?: boolean; // New prop to control full height behavior
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ title, description, ctaText, ctaLink, fullHeight = false }) => {
+const HeroSection: React.FC<React.PropsWithChildren<HeroSectionProps>> = ({ title, description, ctaText, ctaLink, fullHeight = false, children }) => {
   let sectionClasses = `
     bg-gradient-to-r from-gradient-start-platzi to-gradient-end-platzi
     text-white text-center
@@ -41,6 +41,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ title, description, ctaText, 
         >
           {ctaText}
         </Link>
+        {children && (
+          <div className="mt-10 animate-fade-in-up delay-300">
+            {children}
+          </div>
+        )}
       </div>
     </section>
   );

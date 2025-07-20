@@ -10,6 +10,9 @@ import GoogleTagManager from '@/components/GoogleTagManager';
 export const metadata: Metadata = {
   title: 'DestinoTech - Tu Guía en el Mundo IT',
   description: 'Formación IT para latinos: Conquista el Mercado Global con Confianza.',
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({

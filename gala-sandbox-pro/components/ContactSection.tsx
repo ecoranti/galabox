@@ -6,7 +6,6 @@ import { FaTelegramPlane, FaWhatsapp, FaLinkedinIn, FaYoutube, FaTelegram, FaEnv
 const ContactSection: React.FC = () => {
   return (
     <section className="bg-background-light dark:bg-background-dark text-text-light transition-colors duration-300 pt-16">
-
       <div className="container mx-auto px-4 max-w-2xl py-16">
         <h3 className="text-2xl font-semibold mb-6 text-center">Envíanos un Mensaje</h3>
         <form className="space-y-4">
@@ -35,17 +34,12 @@ const ContactSection: React.FC = () => {
         <div className="mt-12 text-center">
           <h4 className="font-semibold text-lg mb-2">También puedes encontrarme en:</h4>
           <div className="flex justify-center gap-4 text-2xl">
-            <a href="https://t.me/JovenesIT" target="_blank" aria-label="Telegram" className="hover:text-blue-400">
-              <FaTelegramPlane />
-            </a>
             <a href="#" target="_blank" aria-label="YouTube" className="hover:text-red-500">
               <FaYoutube />
             </a>
             <a href="#" target="_blank" aria-label="LinkedIn" className="hover:text-blue-600">
               <FaLinkedinIn />
             </a>
-          </div>
-          <p className="mt-4 text-sm flex justify-center items-center gap-4 text-lg">
             <a
               href="mailto:eliascoranti3@gmail.com"
               className="text-blue-400 hover:text-blue-300"
@@ -64,17 +58,7 @@ const ContactSection: React.FC = () => {
             >
               <FaWhatsapp />
             </a>
-            <a
-              href="https://t.me/eliascoranti"
-              className="text-sky-400 hover:text-sky-300"
-              title="Enviar mensaje por Telegram"
-              aria-label="Telegram Directo"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaTelegram />
-            </a>
-          </p>
+          </div>
         </div>
       </div>
     </section>
