@@ -1,30 +1,12 @@
 "use client";
 import { useState, useRef } from 'react';
 import HeroSection from '@/components/HeroSection';
-import FlyingPlane from '@/components/FlyingPlane';
 import { FaTelegramPlane } from 'react-icons/fa';
 
 export default function Home() {
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
-  
-  // Ref para apuntar al ícono estático y medir su posición
-  const iconRef = useRef<HTMLSpanElement>(null);
-
-  const handleAnimationStart = () => {
-    if (iconRef.current) {
-      // Obtenemos la posición exacta del ícono en la pantalla
-      const rect = iconRef.current.getBoundingClientRect();
-      setStartPosition({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
-      
-      // Activamos la animación
-      setIsAnimating(true);
-    }
-  };
-
-  const handleAnimationComplete = () => {
+  // Eliminamos el estado y la lógica para la animación, ya no son necesarios
+  const handleJoinCommunity = () => {
     window.open('https://t.me/oportunidadesparatodos', '_blank'); // Enlace actualizado a la comunidad real
-    setIsAnimating(false);
   };
 
   return (
@@ -41,32 +23,17 @@ export default function Home() {
           </h3>
           <div className="flex items-center justify-center gap-4 mt-4 relative">
             <button
-              onClick={handleAnimationStart}
-              disabled={isAnimating}
-              className="bg-white text-green-800 font-semibold py-2 px-6 rounded-full hover:scale-105 transition disabled:scale-100 disabled:opacity-70"
+              onClick={handleJoinCommunity}
+              className="bg-white text-green-800 font-semibold py-2 px-6 rounded-full hover:scale-105 transition"
             >
               Unirme a la comunidad
             </button>
-
-            {/* Ícono estático. La magia está en la clase 'opacity-0' */}
-            <span 
-              ref={iconRef} 
-              className={`text-white transition-opacity duration-200 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}
-            >
-              <FaTelegramPlane size={32} />
-            </span>
           </div>
         </div>
       </HeroSection>
 
-      {/* El componente de animación se renderiza solo cuando es necesario */}
-      {isAnimating && (
-        <FlyingPlane 
-          startX={startPosition.x} 
-          startY={startPosition.y} 
-          onComplete={handleAnimationComplete} 
-        />
-      )}
+      {/* El componente de animación se elimina */}
+      {/* Ya no se renderiza FlyingPlane */}
     </main>
   );
 }
