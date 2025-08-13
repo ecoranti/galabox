@@ -28,8 +28,12 @@ const FlyingPlane = ({ startX, startY, onComplete }: FlyingPlaneProps) => {
           offsetPath: `path("${dynamicPath}")`,
         }}
       >
-        {/* ¡El cambio clave! El avión ahora es blanco. */}
-        <FaTelegramPlane size={32} color="white" />
+        {/* ¡El cambio clave! El avión ahora es blanco, usando foreignObject para evitar SVG nesting issues. */}
+        <foreignObject width={32} height={32} x={-16} y={-16}>
+          <div style={{ width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <FaTelegramPlane size={32} color="white" />
+          </div>
+        </foreignObject>
       </motion.g>
     </svg>
   );

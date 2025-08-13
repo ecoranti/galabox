@@ -23,7 +23,7 @@ export default function Home() {
   };
 
   const handleAnimationComplete = () => {
-    window.open('https://t.me/tu_comunidad', '_blank'); // Reemplaza con tu enlace
+    window.open('https://t.me/oportunidadesparatodos', '_blank'); // Enlace actualizado a la comunidad real
     setIsAnimating(false);
   };
 
