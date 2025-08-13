@@ -6,7 +6,7 @@ import { FaTelegramPlane } from 'react-icons/fa';
 export default function Home() {
   // Eliminamos el estado y la lógica para la animación, ya no son necesarios
   const handleJoinCommunity = () => {
-    window.open('https://t.me/oportunidadesparatodos', '_blank'); // Enlace actualizado a la comunidad real
+    window.open('https://t.me/JovenesIT', '_blank'); // Enlace actualizado a la comunidad real
   };
 
   return (
